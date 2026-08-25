@@ -11,7 +11,9 @@ X3 Preview & QA Lab is currently best used with an AI coding/browser agent that 
 
 For the strongest current experience, give an AI assistant the extracted folder and ask it to follow this document before opening the lab.
 
-The published alpha.4 ZIP was byte-frozen before this guide was added. Keep that verified archive unchanged and give the AI the canonical online guide at <https://github.com/RO11/x3-preview-qa-lab/blob/main/docs/AI_AGENT_WORKFLOW.md> when the extracted folder does not contain it. Future packages include the guide through the public-package allowlist.
+Alpha.5 includes this guide in the verified public-package allowlist. Older
+alpha.4 archives remain frozen; use their matching release page and checksum
+rather than mixing files or instructions between versions.
 
 ## What the agent needs
 
@@ -27,14 +29,13 @@ The agent must stop if the server tries to bind anywhere other than `127.0.0.1`,
 Before launch, verify the downloaded ZIP:
 
 ```powershell
-(Get-FileHash -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.4-bundled-python.zip' -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-FileHash -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.5-bundled-python.zip' -Algorithm SHA256).Hash.ToLowerInvariant()
+Get-Content -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.5-bundled-python.zip.sha256'
 ```
 
-Expected SHA-256:
-
-```text
-0b879482ca03ccd069bcf0e1c035ac582c35b7ac10a5a4fe248189394870b931
-```
+The computed hash must exactly match the first field in the separately
+downloaded `.zip.sha256` release asset. Do not trust a checksum copied from
+inside the ZIP it is meant to authenticate.
 
 Extract the complete ZIP. Do not run the launcher from inside the archive.
 
@@ -48,7 +49,7 @@ Operate this extracted X3 Preview & QA Lab as a local, read-only QA session.
 1. Read README.md, docs/FIRMWARE_TESTING.md, release-profile.json, and
    release-metadata.json before launch. Read docs/AI_AGENT_WORKFLOW.md from the
    folder when present, or use the canonical online guide linked above.
-2. Verify that the release is v0.1.0-alpha.4 and that the packaged firmware
+2. Verify that the release is v0.1.0-alpha.5 and that the packaged firmware
    policy is bundled-official-baseline-read-only with device_access set to none.
 3. Launch "Launch X3 Preview QA Lab.cmd" only after I authorize running it.
 4. Confirm that it binds only to 127.0.0.1 and opens the local browser UI.

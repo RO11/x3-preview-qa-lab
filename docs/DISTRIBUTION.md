@@ -1,8 +1,8 @@
 # Distribution contract
 
-The public artifact is named `X3-Preview-QA-Lab-Windows-v0.1.0-alpha.4-bundled-python.zip`. It includes the reviewed official 64-bit CPython `3.14.7` Windows embeddable runtime, so it does not require a system Python installation. The words `self-contained` or `one-click without prerequisites` must not be used for a source-portable archive.
+The public artifact is named `X3-Preview-QA-Lab-Windows-v0.1.0-alpha.5-bundled-python.zip`. It includes the reviewed official 64-bit CPython `3.14.7` Windows embeddable runtime, so it does not require a system Python installation. The words `self-contained` or `one-click without prerequisites` must not be used for a source-portable archive.
 
-`release-profile.json` is the machine-readable authority for the product name, version, Xteink X3/ESP32-C3 target, and firmware policy. Alpha.4 is a synthetic modeled preview with no device access. It bundles the unchanged official stable CrossPoint Reader `v1.5.0` `firmware.bin` as a read-only baseline. The package verifies the baseline's `5,544,112` bytes and SHA-256 `a7087155757bc63c1fcf60ae8d60a3760ce6d3406aaf7b9f23d0025244434f08`; it never executes or auto-flashes it. A configured source-checkout run may inspect a different explicitly selected local image read-only.
+`release-profile.json` is the machine-readable authority for the product name, version, Xteink X3/ESP32-C3 target, and firmware policy. Alpha.5 is a synthetic modeled preview with no device access. It bundles the unchanged official stable CrossPoint Reader `v1.5.0` `firmware.bin` as a read-only baseline. The package verifies the baseline's `5,544,112` bytes and SHA-256 `a7087155757bc63c1fcf60ae8d60a3760ce6d3406aaf7b9f23d0025244434f08`; it never executes or auto-flashes it. A configured source-checkout run may inspect a different explicitly selected local image read-only.
 
 ## Package types
 
@@ -12,7 +12,7 @@ The public artifact is named `X3-Preview-QA-Lab-Windows-v0.1.0-alpha.4-bundled-p
 | `bundled-python` | Reviewed local Python runtime | Double-click launcher; no Python installation needed |
 | `pyinstaller` | Reproducible reviewed executable | Self-contained only after clean-machine verification |
 
-The builder detects a local bundled runtime input and names the package from the distribution actually produced. Alpha.4 pins the complete official CPython `3.14.7` embedded source tree to SHA-256 `04cb0c29f815d844dac63b70a47b6905e0676fe03a5603c485b59a286c1f9f97` using the documented path-length-content tree algorithm. Packaging adds only the standard `../../..` application entry to `python314._pth`, keeps automatic `site` import disabled, and pins that configured tree to `73d86e9cc8dae5a0cf207b4b7364a092859679bf1478b920397b6c74bb17a665`. Its source archive is `12,673,227` bytes with SHA-256 `d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15`. PyInstaller being installed on a build machine does not by itself make an executable reproducible, reviewed or clean-machine verified.
+The builder detects a local bundled runtime input and names the package from the distribution actually produced. Alpha.5 pins the complete official CPython `3.14.7` embedded source tree to SHA-256 `04cb0c29f815d844dac63b70a47b6905e0676fe03a5603c485b59a286c1f9f97` using the documented path-length-content tree algorithm. Packaging adds only the standard `../../..` application entry to `python314._pth`, keeps automatic `site` import disabled, and pins that configured tree to `73d86e9cc8dae5a0cf207b4b7364a092859679bf1478b920397b6c74bb17a665`. Its source archive is `12,673,227` bytes with SHA-256 `d297e5ff019966817ad8502465176139f2d3d840fa4ed84b13bed399a6ab1f15`. PyInstaller being installed on a build machine does not by itself make an executable reproducible, reviewed or clean-machine verified.
 
 ## Required contents
 

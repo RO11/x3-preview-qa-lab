@@ -1,7 +1,7 @@
 {
   "schema": "x3-preview-release-profile/1",
   "product": "X3 Preview & QA Lab for Windows",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "target": {
     "model": "Xteink X3",
     "mcu": "ESP32-C3"
