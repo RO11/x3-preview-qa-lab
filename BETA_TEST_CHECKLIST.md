@@ -31,7 +31,7 @@ These are intentionally pending until three people outside the development machi
 - [ ] Release notes say "unofficial" and link to the official CrossPoint Simulator.
 - [ ] Release notes state that E-Ink, buttons, SD power loss, radios, RTC, watchdog, heap, battery and board power remain physical-device gates.
 - [ ] No claim says the package executes arbitrary firmware unless QEMU evidence for that exact image is attached.
-- [ ] Community proposal is posted before wider promotion.
+- [x] Community proposal posted in [CrossPoint Discussion #3208](https://github.com/crosspoint-reader/crosspoint-reader/discussions/3208) before wider promotion.
 - [ ] Release and community copy state that unguided human-only use has not been tested.
 
 Do not mark the alpha generally validated until all three tester rows have evidence attached.
