@@ -1,0 +1,25 @@
+{
+  "name": "x3-preview-qa-lab",
+  "version": "0.1.0-alpha.4",
+  "description": "Unofficial Windows preview and QA lab for Xteink X3 CrossPoint development.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20",
+    "python": ">=3.10"
+  },
+  "scripts": {
+    "test": "npm run test:js && npm run test:python && npm run test:release",
+    "test:js": "node --test tests/*.test.mjs",
+    "test:python": "python -B -m unittest -v test_server.py test_qemu_firmware.py qa.test_pocket_sync_model qa.test_x3_behavior_model",
+    "test:release": "python -B scripts/test_release_engineering.py",
+    "sanitize": "python -B scripts/sanitize_release.py --source .",
+    "package:portable": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/build-portable.ps1"
+  },
+  "keywords": [
+    "crosspoint",
+    "e-ink",
+    "esp32-c3",
+    "xteink-x3"
+  ]
+}

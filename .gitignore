@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.runtime/
+artifacts/
+release/
+node_modules/
+coverage/
+.pytest_cache/
+.DS_Store
+Thumbs.db
