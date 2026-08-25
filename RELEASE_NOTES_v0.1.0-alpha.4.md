@@ -42,6 +42,39 @@ The local loopback service can replay both successful and deliberately broken ca
 
 These are synthetic, deterministic scenarios. They do not contact a production service or a physical X3.
 
+## How Daily Cards V1 and Inbox V2 differ
+
+The lab models two separate content systems because they solve different problems on a small reader. They are not alternate names for the same feed, and content is never copied between them merely to make both screens look populated.
+
+### Daily Cards V1: a compact dashboard
+
+Daily Cards is for a small, fixed set of glanceable reports. Each card has a bounded title and summary, up to four metrics, and up to three short sections. It may also point to one complete plain-text report, but the device-facing card itself stays compact.
+
+A producer prepares one complete card and commits it through a fenced handoff. The service validates the whole object, assigns its revision, and publishes a compact manifest. The X3 then:
+
+1. requests the manifest with `If-None-Match`;
+2. accepts `304 Not Modified` only when the complete referenced cache still validates;
+3. downloads only changed card revisions;
+4. streams an optional report to a revisioned SD file;
+5. checks the expected byte count and SHA-256 before atomic promotion; and
+6. keeps the last verified card available when a refresh fails.
+
+In the modeled UI, Daily Cards exposes Back, Refresh, Open, and Next. Opening a report borrows the text-reader flow without treating the report as a normal library book.
+
+### Inbox V2: a pageable artifact queue
+
+Inbox is for independent deliverables rather than a fixed dashboard. Its closed renderer vocabulary is `card`, `text`, `image-1bit`, `epub`, `action`, and `sleep-screen`. A module is data—renderer kind, bounded metadata, immutable artifact, and allowlisted actions—not downloadable executable code.
+
+The service owns the item and delivery IDs, module mapping, revision, byte count, SHA-256, MIME type, device routing, and available actions. The X3 requests cursor-ordered pages, downloads each changed artifact from the same authenticated origin, rejects redirects, verifies exact bytes and SHA-256, and advances its cursor only after safe local staging. Tombstones recall removed items.
+
+Actions such as Keep, Archive, Done, Defer, Open on phone, Like, or Dislike are selected from a fixed server registry. Resulting receipts are queued in a bounded outbox and retried idempotently; they are not arbitrary commands. Interrupted artifacts, malformed pages, or failed acknowledgements preserve the last committed content so a bad refresh cannot silently empty or corrupt the Inbox.
+
+### Where AI-generated content enters
+
+ChatGPT, Google Spark, and Grok can act as separate producer adapters. Each submits a strict, complete content envelope through its own narrow transport. They do not get to choose device identifiers, executable behavior, hashes, revisions, or arbitrary actions, and only one producer may own a logical job for a given date. The validation service converts accepted content into the appropriate V1 or V2 representation.
+
+The public examples contain no real addresses, deployment hosts, device IDs, schedules, account details, private articles, or credentials. A longer sanitized architecture and formatting walkthrough is available in [How we extended CrossPoint with AI-fed Cards and Inbox modules](https://github.com/RO11/x3-preview-qa-lab/blob/main/docs/AI_FED_CROSSPOINT_PIPELINE.md).
+
 ### Inspect a known public firmware baseline
 
 The package includes an unchanged, read-only copy of the official stable CrossPoint Reader `v1.5.0` `firmware.bin` as a community reference:

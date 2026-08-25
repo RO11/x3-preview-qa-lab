@@ -4,6 +4,8 @@
 
 X3 Preview & QA Lab is an unofficial, local development tool for people building CrossPoint experiences for the Xteink X3. It provides a fast four-gray screen preview, modeled button navigation, synthetic Daily Cards and Inbox traffic, failure injection, and repeatable contract checks without repeatedly flashing a reader.
 
+For a public-safe overview of the experimental CrossPoint content modifications and the producer formats used by ChatGPT, Google Spark, and Grok, read [How we extended CrossPoint with AI-fed Cards and Inbox modules](docs/AI_FED_CROSSPOINT_PIPELINE.md).
+
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 
 > **AI-first alpha:** The current release was developed and exercised with an AI coding/browser agent supervising launch, navigation, scenario selection, and evidence reporting. Unguided human-only operation has not been usability-tested. For best results, give an AI assistant local file, command, and browser access and have it follow [AI_AGENT_WORKFLOW.md](docs/AI_AGENT_WORKFLOW.md). The lab itself contains no AI model and needs no AI API key.
