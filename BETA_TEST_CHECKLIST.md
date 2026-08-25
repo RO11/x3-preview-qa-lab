@@ -13,12 +13,13 @@ Target: `0.1.0-alpha.4`
 
 ## Clean-machine testers
 
-These are intentionally pending until three people outside the development machine complete them without live help.
+These are intentionally pending until three people outside the development machine complete them with an AI coding/browser assistant following `docs/AI_AGENT_WORKFLOW.md`, but without live help from the maintainer. Unguided human-only usability is a separate unverified boundary.
 
-- [ ] Tester 1: extract, launch, navigate Home/Inbox, run one failure scenario, stop cleanly.
-- [ ] Tester 2: extract, launch, navigate Home/Inbox, run one failure scenario, stop cleanly.
-- [ ] Tester 3: extract, launch, navigate Home/Inbox, run one failure scenario, stop cleanly.
+- [ ] Tester 1: have an AI verify, extract, launch, navigate Home/Inbox, run one failure scenario, report evidence boundaries, and stop cleanly.
+- [ ] Tester 2: have an AI verify, extract, launch, navigate Home/Inbox, run one failure scenario, report evidence boundaries, and stop cleanly.
+- [ ] Tester 3: have an AI verify, extract, launch, navigate Home/Inbox, run one failure scenario, report evidence boundaries, and stop cleanly.
 - [ ] All testers confirm the bundled package launches without a system Python installation.
+- [ ] All testers confirm the AI guide is sufficient without maintainer intervention.
 - [ ] Without opening the README or receiving help, all testers correctly state that the package includes stable CrossPoint `v1.5.0`, while the device canvas still uses synthetic modeled fixtures rather than firmware execution.
 - [ ] Without opening the README or receiving help, all testers correctly distinguish the bundled baseline as read-only metadata and official-flasher input, QEMU as separate and not started, and the physical X3 firmware version as unknown to the app.
 - [ ] All testers verify the published ZIP SHA-256 before launch.
@@ -31,5 +32,6 @@ These are intentionally pending until three people outside the development machi
 - [ ] Release notes state that E-Ink, buttons, SD power loss, radios, RTC, watchdog, heap, battery and board power remain physical-device gates.
 - [ ] No claim says the package executes arbitrary firmware unless QEMU evidence for that exact image is attached.
 - [ ] Community proposal is posted before wider promotion.
+- [ ] Release and community copy state that unguided human-only use has not been tested.
 
 Do not mark the alpha generally validated until all three tester rows have evidence attached.

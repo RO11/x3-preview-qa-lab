@@ -8,6 +8,12 @@ Download `X3-Preview-QA-Lab-Windows-v0.1.0-alpha.4-bundled-python.zip`, extract 
 
 The ZIP includes the official 64-bit CPython 3.14.7 embeddable runtime, so a separate Python installation is not required.
 
+## Recommended operating model
+
+This is currently an AI-first alpha. It was developed and exercised with an AI coding/browser agent managing verification, launch, navigation, scenario selection, and evidence reporting. Unguided human-only use has not been usability-tested.
+
+For best results, give an AI assistant access to the extracted folder and local browser, then ask it to follow [`docs/AI_AGENT_WORKFLOW.md`](docs/AI_AGENT_WORKFLOW.md). The lab does not contain an AI model and does not require an AI API key.
+
 ZIP SHA-256:
 
 ```text
@@ -33,6 +39,6 @@ ZIP SHA-256:
 
 The package passed the local JavaScript, Python, release-engineering, deterministic-build and sanitization checks. Results labeled **MODELED** are not embedded firmware execution. Source-bound **REAL CONTRACT TEST** evidence applies only to the frozen compatible firmware checkout used to build the candidate. QEMU and physical X3 behavior are separate gates.
 
-This alpha still needs clean-machine feedback from three outside testers. It does not prove real E-Ink waveform or ghosting, physical buttons, microSD power-loss behavior, Wi-Fi/BLE behavior, RTC wake, fragmented heap, watchdog timing or battery use.
+This alpha still needs AI-guided clean-machine feedback from three outside testers. Unguided human-only usability is also unverified. It does not prove real E-Ink waveform or ghosting, physical buttons, microSD power-loss behavior, Wi-Fi/BLE behavior, RTC wake, fragmented heap, watchdog timing or battery use.
 
 Please report only synthetic reproductions. Do not attach private books, firmware, credentials, logs containing host paths, or device dumps.

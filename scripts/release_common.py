@@ -86,6 +86,7 @@ ROOT_DOCUMENTS = (
     "SECURITY.md",
     "CONTRIBUTING.md",
     "BETA_TEST_CHECKLIST.md",
+    "docs/AI_AGENT_WORKFLOW.md",
     "docs/DISTRIBUTION.md",
     "docs/FIRMWARE_TESTING.md",
     "docs/QEMU_SETUP.md",

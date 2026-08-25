@@ -6,6 +6,8 @@ X3 Preview & QA Lab is an unofficial, local development tool for people building
 
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 
+> **AI-first alpha:** The current release was developed and exercised with an AI coding/browser agent supervising launch, navigation, scenario selection, and evidence reporting. Unguided human-only operation has not been usability-tested. For best results, give an AI assistant local file, command, and browser access and have it follow [AI_AGENT_WORKFLOW.md](docs/AI_AGENT_WORKFLOW.md). The lab itself contains no AI model and needs no AI API key.
+
 ## What the alpha proves
 
 Every result is labelled by evidence level:
@@ -18,6 +20,10 @@ Every result is labelled by evidence level:
 The browser is clamped to the X3's `528 x 792` portrait surface and four native gray levels. It remains a browser-font and mirrored-renderer preview, not a pixel-identical firmware renderer.
 
 ## Try the synthetic demo
+
+### Recommended AI-guided start
+
+Use an AI coding/browser assistant with access to the extracted folder. Ask it to read [AI_AGENT_WORKFLOW.md](docs/AI_AGENT_WORKFLOW.md), verify the release metadata and ZIP hash, launch the local server with your permission, exercise the normal and failure scenarios, and report each evidence level separately. Do not give the assistant device credentials, private books, private firmware, or production endpoints.
 
 ### Portable Windows ZIP
 
@@ -84,7 +90,7 @@ npm run package:portable
 
 On a local Windows workstation the script stages only under a validated `D:\quarantine`, falling back to the same literal folder on `E:` when `D:` is unavailable. The single final ZIP and its checksum stay under `release/`; CI may use its isolated runner temp directory. The builder produces a deterministic ZIP, an external `.sha256` file, an internal per-file `FILES.SHA256`, and schema-2 machine-readable release metadata. `release-profile.json` is the version, target and firmware-policy authority. Provenance records the exact transformed public-payload digest, builder-script hash, demo-contract hash, source epoch, and optional Git commit plus dirty-state context; the payload digest remains authoritative even for a dirty checkout. The builder refuses links, unapproved firmware-like files, secrets, personal paths and non-synthetic payloads. The one exception is the exact allowlisted CrossPoint `v1.5.0` baseline, whose size and SHA-256 are checked in the source tree and again inside the ZIP.
 
-See [DISTRIBUTION.md](docs/DISTRIBUTION.md), [FIRMWARE_TESTING.md](docs/FIRMWARE_TESTING.md), and [BETA_TEST_CHECKLIST.md](BETA_TEST_CHECKLIST.md) before publishing.
+See [AI_AGENT_WORKFLOW.md](docs/AI_AGENT_WORKFLOW.md), [DISTRIBUTION.md](docs/DISTRIBUTION.md), [FIRMWARE_TESTING.md](docs/FIRMWARE_TESTING.md), and [BETA_TEST_CHECKLIST.md](BETA_TEST_CHECKLIST.md) before publishing.
 
 ## Privacy and security
 
@@ -97,7 +103,7 @@ Report security issues through the private process in [SECURITY.md](SECURITY.md)
 
 ## Alpha status
 
-The automated release checks can establish package integrity and modeled behavior. A public release still requires three outside testers to complete the clean-machine tasks in the beta checklist. Until that evidence exists, this is a candidate package—not a validated general release.
+The automated release checks can establish package integrity and modeled behavior. They do not establish unguided human usability. A public release still requires three outside testers to complete the AI-guided clean-machine tasks in the beta checklist, and human-only operation remains unvalidated until it is tested separately. Until that evidence exists, this is a candidate package—not a validated general release.
 
 ## License
 

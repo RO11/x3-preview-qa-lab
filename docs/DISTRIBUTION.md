@@ -22,6 +22,7 @@ The builder detects a local bundled runtime input and names the package from the
 - X3 resource contract used by the preview;
 - `release-profile.json` with the exact release and firmware policy;
 - README, security, contribution and beta-test documents;
+- AI-first operating instructions that explicitly mark unguided human-only use as untested;
 - MIT license and font notices/license texts;
 - `FILES.SHA256` and `release-metadata.json`.
 
@@ -48,7 +49,7 @@ On local Windows machines, disposable staging is restricted to a validated real 
 2. Build the deterministic package twice and compare hashes.
 3. Verify the external and internal manifests and all schema-2 provenance hashes.
 4. Attach the exact ZIP and `.sha256` file to a draft GitHub release.
-5. Complete the three outside-tester rows in `BETA_TEST_CHECKLIST.md`.
+5. Complete the three AI-guided outside-tester rows in `BETA_TEST_CHECKLIST.md`.
 6. Discuss the alpha with the CrossPoint community before wider promotion.
 
 No script in this repository commits, pushes, publishes or creates a release automatically.
