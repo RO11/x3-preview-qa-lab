@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "npm run test:js && npm run test:python && npm run test:release",
-    "test:js": "node --test tests/*.test.mjs",
+    "test:js": "node --test tests/network-live.test.mjs tests/release-tools.test.mjs tests/simulator-core.test.mjs",
     "test:python": "python -B -m unittest -v test_server.py test_qemu_firmware.py qa.test_pocket_sync_model qa.test_x3_behavior_model",
     "test:release": "python -B scripts/test_release_engineering.py",
     "sanitize": "python -B scripts/sanitize_release.py --source .",
