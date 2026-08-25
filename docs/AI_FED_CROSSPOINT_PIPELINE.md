@@ -32,13 +32,19 @@ The arrows do not mean all three AIs write the same item. The system enforces **
 
 ## Modeled preview: a Spark-style Inbox V2 feed
 
-The following images come from the public lab's modeled X3 renderer. All titles and article text are fictional demonstration material written for this preview. No live feed, private article, account, device, or physical E-Ink screen appears here.
+The following images are lossless native `528 x 792` PNG exports from the public lab's modeled X3 canvas. All titles and article text are fictional demonstration material written for this preview. No live feed, private article, account, device, or physical E-Ink screen appears here.
 
-| Inbox V2 feed | Opened text artifact |
-|---|---|
-| ![Modeled X3 Inbox V2 list with three synthetic Spark demo items](images/inbox-v2-spark-list.png) | ![Modeled X3 reader with a synthetic Spark article open](images/inbox-v2-spark-article.png) |
+### Default Inbox V2 card preview
 
-**Evidence label: MODELED / SYNTHETIC.** The first screen shows separate Inbox V2 deliveries. Opening one uses the bounded text-reader path, while the item metadata can still expose server-allowlisted feedback such as `like` and `dislike`. This demonstrates the interface and contract shape, not unattended production delivery or physical display quality.
+![Modeled native 528 by 792 X3 Inbox V2 card preview for a synthetic Spark demo item](images/inbox-v2-default-preview-528x792.png)
+
+The normal Inbox entry flow opens this Cards-style preview. It shows one delivery at a time with its title, module, kind, summary, key points, and the Back, Actions, Open, and Next controls. The compact Browse List is a separate secondary view and is not presented here as the default Inbox.
+
+### Opened text artifact
+
+![Modeled native 528 by 792 X3 reader with a synthetic Spark article open](images/inbox-v2-open-article-528x792.png)
+
+**Evidence label: MODELED / SYNTHETIC.** Opening the preview uses the bounded text-reader path, while the item metadata can still expose server-allowlisted feedback such as `like` and `dislike`. The images are shown individually at their native renderer resolution instead of being enlarged from browser thumbnails. This demonstrates the interface and contract shape, not unattended production delivery or physical display quality.
 
 ## How ChatGPT, Spark, and Grok enter the same system
 

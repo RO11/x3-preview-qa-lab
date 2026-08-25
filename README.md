@@ -8,13 +8,17 @@ For a public-safe overview of the experimental CrossPoint content modifications 
 
 ## Modeled Inbox V2 preview
 
-These are synthetic Spark-style samples rendered by the lab's modeled `528 x 792`, four-gray X3 interface. They demonstrate the Inbox V2 feed and text-reader flow; they are not screenshots from physical E-Ink hardware and do not contain generated or personal production content.
+These are lossless native `528 x 792` PNG exports from the lab's modeled four-gray X3 canvas. The Inbox normally opens in the Cards-style preview shown first; the compact Browse List is a separate secondary view. These are not screenshots from physical E-Ink hardware and contain no generated or personal production content.
 
-| Inbox V2 feed | Opened synthetic article |
-|---|---|
-| ![Modeled X3 Inbox V2 feed containing three fictional Spark demo items](docs/images/inbox-v2-spark-list.png) | ![Modeled X3 reader showing the first page of a fictional Spark demo article](docs/images/inbox-v2-spark-article.png) |
+### Default Inbox V2 card preview
 
-**Evidence label: MODELED / SYNTHETIC.** The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs the content modules already implemented in the compatible XTINCT system, rather than proposing new Inbox or Card ideas.
+![Modeled native 528 by 792 X3 Inbox V2 card preview for a fictional Spark demo item](docs/images/inbox-v2-default-preview-528x792.png)
+
+### Opened synthetic text artifact
+
+![Modeled native 528 by 792 X3 text reader showing a fictional Spark demo article](docs/images/inbox-v2-open-article-528x792.png)
+
+**Evidence label: MODELED / SYNTHETIC.** Both images are shown individually at their native renderer resolution instead of being enlarged from browser thumbnails. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs the content modules already implemented in the compatible XTINCT system, rather than proposing new Inbox or Card ideas.
 
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 

@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 import socket
+import struct
 import subprocess
 import sys
 import tempfile
@@ -61,6 +62,17 @@ def packaging_test_root() -> Path:
 
 
 class ReleaseEngineeringTests(unittest.TestCase):
+    def test_documented_inbox_previews_are_native_x3_pngs(self) -> None:
+        preview_names = (
+            "inbox-v2-default-preview-528x792.png",
+            "inbox-v2-open-article-528x792.png",
+        )
+        for name in preview_names:
+            data = (SIMULATOR_ROOT / "docs" / "images" / name).read_bytes()
+            self.assertEqual(b"\x89PNG\r\n\x1a\n", data[:8], name)
+            self.assertEqual(b"IHDR", data[12:16], name)
+            self.assertEqual((528, 792), struct.unpack(">II", data[16:24]), name)
+
     def test_runtime_license_exception_is_exact_and_does_not_weaken_email_scanning(self) -> None:
         approved = "Julian Seward, jseward@acm.org"
         self.assertEqual(
