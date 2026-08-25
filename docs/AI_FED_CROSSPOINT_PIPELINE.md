@@ -30,6 +30,16 @@ flowchart LR
 
 The arrows do not mean all three AIs write the same item. The system enforces **one producer for one logical job and date**. Moving a job from one producer to another requires disabling the prior owner so duplicate articles cannot race each other.
 
+## Modeled preview: a Spark-style Inbox V2 feed
+
+The following images come from the public lab's modeled X3 renderer. All titles and article text are fictional demonstration material written for this preview. No live feed, private article, account, device, or physical E-Ink screen appears here.
+
+| Inbox V2 feed | Opened text artifact |
+|---|---|
+| ![Modeled X3 Inbox V2 list with three synthetic Spark demo items](images/inbox-v2-spark-list.png) | ![Modeled X3 reader with a synthetic Spark article open](images/inbox-v2-spark-article.png) |
+
+**Evidence label: MODELED / SYNTHETIC.** The first screen shows separate Inbox V2 deliveries. Opening one uses the bounded text-reader path, while the item metadata can still expose server-allowlisted feedback such as `like` and `dislike`. This demonstrates the interface and contract shape, not unattended production delivery or physical display quality.
+
 ## How ChatGPT, Spark, and Grok enter the same system
 
 The three producers use different transports, but they converge on the same bounded content contract.
@@ -194,6 +204,25 @@ The IDs, revision, digest, byte count, SHA-256, module, actions, timestamps, and
 The X3 requests cursor-ordered pages of at most 16 changes. It downloads artifacts from the same authenticated origin, rejects redirects, streams large objects instead of buffering them whole, and verifies exact bytes and SHA-256 before committing. Tombstones remove recalled items. Failed or interrupted transfers preserve the last committed state and do not silently advance the cursor.
 
 Inbox actions are bounded data, not remote code. Depending on item kind and module, the registry may expose `keep`, `archive`, `done`, `defer`, `open-phone`, `like`, or `dislike`. Device receipts are queued in a bounded outbox and retried idempotently. A local delete is never blocked just because the network or receipt queue is unavailable.
+
+## Content ideas for a once-a-day X3
+
+These are reusable proposals enabled by the Cards V1 and Inbox V2 shapes, not claims that every module is deployed or physically verified. A community build could choose only the lanes that fit its own sources, permissions, and storage budget.
+
+| Content idea | Best lane | Once-a-day shape | Useful feedback |
+|---|---|---|---|
+| Original E-Ink serial | Inbox V2 text or EPUB | One complete episode, a two-line recap, and a deliberate stopping point | `like` / `dislike`, plus explicit genre or tone vetoes |
+| Pocket puzzle page | Inbox V2 text | A small mix of logic, word, sequence, and observation puzzles with hints and answers | `like` / `dislike` and preferred puzzle type |
+| Project pulse | Daily Cards V1 with a linked report | Current milestone, one risk, and one bounded feature or experiment with effort and first action | `done`, `defer`, or open the full report |
+| Reading discovery | Inbox V2 text | One recommendation based on finished-book signals rather than titles merely saved to a library | `keep`, `like`, or `dislike` by genre |
+| One-page lesson | Inbox V2 text | A compact language, science, history, coding, or craft lesson followed by one recall question | `like` / `dislike` and difficulty preference |
+| Local or weekend guide | Daily Cards V1 plus optional Inbox detail | A few time-bounded events, walks, exhibitions, or low-friction outings from public sources | `keep`, `defer`, or `open-phone` |
+| Field checklist | Inbox V2 text or action item | A maintenance, travel, photography, workshop, garden, or inspection checklist that works offline | `done`, `defer`, or archive |
+| Research brief | Daily Cards V1 with a linked report | Three sourced findings, what changed, and one question worth following | `keep` or open the full report |
+| Quiet creative prompt | Inbox V2 text or image | One writing, sketching, observation, or photography constraint designed for a short offline session | `like` / `dislike` by medium |
+| Personal focus slate | Daily Cards V1 | One priority, two supporting actions, and a clear stopping condition rather than an endless task list | `done` or `defer` |
+
+The same ideas can be produced by different systems, but the transport should stay replaceable and the contract should stay fixed. The device should never need a new firmware feature merely because a different model wrote the next article.
 
 ## What changed in the CrossPoint firmware
 

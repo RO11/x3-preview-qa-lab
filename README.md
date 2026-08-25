@@ -6,6 +6,16 @@ X3 Preview & QA Lab is an unofficial, local development tool for people building
 
 For a public-safe overview of the experimental CrossPoint content modifications and the producer formats used by ChatGPT, Google Spark, and Grok, read [How we extended CrossPoint with AI-fed Cards and Inbox modules](docs/AI_FED_CROSSPOINT_PIPELINE.md).
 
+## Modeled Inbox V2 preview
+
+These are synthetic Spark-style samples rendered by the lab's modeled `528 x 792`, four-gray X3 interface. They demonstrate the Inbox V2 feed and text-reader flow; they are not screenshots from physical E-Ink hardware and do not contain generated or personal production content.
+
+| Inbox V2 feed | Opened synthetic article |
+|---|---|
+| ![Modeled X3 Inbox V2 feed containing three fictional Spark demo items](docs/images/inbox-v2-spark-list.png) | ![Modeled X3 reader showing the first page of a fictional Spark demo article](docs/images/inbox-v2-spark-article.png) |
+
+**Evidence label: MODELED / SYNTHETIC.** The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#content-ideas-for-a-once-a-day-x3) also lists reusable content ideas, including serial fiction with feedback, puzzle pages, project pulses, reading discovery, compact lessons, local guides, field checklists, and research briefs.
+
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 
 > **AI-first alpha:** The current release was developed and exercised with an AI coding/browser agent supervising launch, navigation, scenario selection, and evidence reporting. Unguided human-only operation has not been usability-tested. For best results, give an AI assistant local file, command, and browser access and have it follow [AI_AGENT_WORKFLOW.md](docs/AI_AGENT_WORKFLOW.md). The lab itself contains no AI model and needs no AI API key.

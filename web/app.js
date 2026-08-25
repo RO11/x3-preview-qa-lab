@@ -83,19 +83,37 @@ function publicDemoFixtures(raw) {
   ];
   const inboxTemplates = [
     {
-      title: "Sample Daily Digest",
-      summary: "A synthetic daily edition for checking EPUB download and reader behavior.",
-      points: ["No real calendar is connected", "All content is generated demo data"]
+      moduleId: "spark-demo",
+      kind: "text",
+      title: "Spark Demo: Designing for Four Grays",
+      summary: "A fictional Spark-style article about making calm, legible pages for a four-gray E-Ink display.",
+      points: ["Use contrast to express hierarchy", "Keep each page focused on one idea"],
+      pages: [
+        "SPARK DEMO · SYNTHETIC ARTICLE\n\nDESIGNING FOR FOUR GRAYS\n\nA four-gray screen rewards restraint. Instead of relying on color, a page can use spacing, weight and rhythm to show what matters first. A strong heading anchors the eye. A short summary establishes context. One or two supporting points give the reader somewhere useful to go next.\n\nThe interesting constraint is not the missing color. It is the slower pace. E-Ink makes every refresh feel intentional, so the interface works best when it avoids unnecessary motion and keeps each page focused on one clear idea.",
+        "A practical layout starts with the native display size. Test the longest believable title, allow breathing room around headings, and reserve the darkest tone for the information that deserves immediate attention. Middle grays can separate metadata from prose without turning the page into a patchwork.\n\nThe result should feel less like a compressed website and more like a small printed card: quiet, durable and readable in a glance.\n\nThis is fictional demonstration text. No external account or live article was used."
+      ]
     },
     {
-      title: "Sample Technical Note",
-      summary: "A synthetic reading note for checking text artifact and feedback actions.",
-      points: ["Fixture bytes stay on loopback", "No external provider is contacted"]
+      moduleId: "spark-demo",
+      kind: "text",
+      title: "Spark Demo: A Library for One Quiet Morning",
+      summary: "A synthetic reading essay showing how a longer generated article could appear in Inbox V2.",
+      points: ["Three short pieces beat an endless feed", "Offline reading protects attention"],
+      pages: [
+        "SPARK DEMO · SYNTHETIC ARTICLE\n\nA LIBRARY FOR ONE QUIET MORNING\n\nImagine opening a reader that has already chosen a small morning library: one useful technical note, one piece of fiction and one puzzle page. There is no infinite scroll and no pressure to catch up. The collection is deliberately finite.\n\nEach item arrives as a verified local artifact, so the reader can open it again after the network disappears. The value comes from selection, not volume.",
+        "A once-a-day device can be opinionated about limits. It can keep yesterday's verified edition when today's refresh fails, distinguish unread material from retained favorites, and let simple feedback improve tomorrow's selection.\n\nThis sample is fictional and contains no private reading history."
+      ]
     },
     {
-      title: "Sample Local Guide",
-      summary: "A synthetic local guide for checking longer titles and digest points.",
-      points: ["Choose one demo activity", "Verify details in a real workflow later"]
+      moduleId: "spark-demo",
+      kind: "text",
+      title: "Spark Demo: Pocket Puzzle Page",
+      summary: "A source-free synthetic puzzle page designed for a brief offline break.",
+      points: ["One logic puzzle and one word puzzle", "Hints and answers stay in the same artifact"],
+      pages: [
+        "SPARK DEMO · SYNTHETIC PUZZLES\n\nPOCKET PUZZLE PAGE\n\nLOGIC\nThree boxes are all labelled incorrectly: APPLES, PEARS and MIXED. You may draw one fruit from one box. Which box should you choose to identify all three?\n\nWORDS\nChange COLD to WARM one letter at a time. Every step must remain a four-letter English word.\n\nMove to the next page only when you want the hints.",
+        "HINTS\n\nFor the boxes, begin with the label that cannot possibly describe its contents.\n\nFor the word ladder, a path can pass through something tied with string, then a playing card.\n\nANSWERS\n\nDraw from MIXED; that fruit identifies the box because every label is wrong, and the others follow by elimination.\n\nOne ladder is COLD, CORD, CARD, WARD, WARM."
+      ]
     }
   ];
   return {
@@ -132,12 +150,13 @@ function publicDemoFixtures(raw) {
       };
       return {
         itemId: `demo-inbox-${String(index + 1).padStart(2, "0")}`,
-        moduleId: "demo-source",
-        kind: item.kind || "text",
+        moduleId: template.moduleId || "demo-source",
+        kind: template.kind || item.kind || "text",
         title: template.title,
         createdAt: "2026-01-15T08:00:00Z",
         state: "pending",
-        digest: { schema: "xtinct.inbox-digest/v1", summary: template.summary, points: template.points }
+        digest: { schema: "xtinct.inbox-digest/v1", summary: template.summary, points: template.points },
+        pages: Array.isArray(template.pages) ? template.pages : undefined
       };
     })
   };
@@ -401,9 +420,11 @@ function useNetworkFixtures() {
   }));
   const safeInbox = inbox.map((item, index) => ({
     ...item,
-    moduleId: "demo-source",
+    moduleId: publicView.inbox[index].moduleId,
+    kind: publicView.inbox[index].kind,
     title: publicView.inbox[index].title,
-    digest: publicView.inbox[index].digest
+    digest: publicView.inbox[index].digest,
+    pages: publicView.inbox[index].pages
   }));
   state.fixtures = {
     ...state.fixtures,
