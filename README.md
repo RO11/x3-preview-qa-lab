@@ -14,7 +14,7 @@ These are synthetic Spark-style samples rendered by the lab's modeled `528 x 792
 |---|---|
 | ![Modeled X3 Inbox V2 feed containing three fictional Spark demo items](docs/images/inbox-v2-spark-list.png) | ![Modeled X3 reader showing the first page of a fictional Spark demo article](docs/images/inbox-v2-spark-article.png) |
 
-**Evidence label: MODELED / SYNTHETIC.** The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#content-ideas-for-a-once-a-day-x3) also lists reusable content ideas, including serial fiction with feedback, puzzle pages, project pulses, reading discovery, compact lessons, local guides, field checklists, and research briefs.
+**Evidence label: MODELED / SYNTHETIC.** The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs the content modules already implemented in the compatible XTINCT system, rather than proposing new Inbox or Card ideas.
 
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 

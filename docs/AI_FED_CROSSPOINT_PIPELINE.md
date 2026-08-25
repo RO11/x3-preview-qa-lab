@@ -205,24 +205,44 @@ The X3 requests cursor-ordered pages of at most 16 changes. It downloads artifac
 
 Inbox actions are bounded data, not remote code. Depending on item kind and module, the registry may expose `keep`, `archive`, `done`, `defer`, `open-phone`, `like`, or `dislike`. Device receipts are queued in a bounded outbox and retried idempotently. A local delete is never blocked just because the network or receipt queue is unavailable.
 
-## Content ideas for a once-a-day X3
+## Implemented content modules
 
-These are reusable proposals enabled by the Cards V1 and Inbox V2 shapes, not claims that every module is deployed or physically verified. A community build could choose only the lanes that fit its own sources, permissions, and storage budget.
+This is an inventory of content already represented by concrete XTINCT producer contracts, strict Worker validation/publication paths, and the compatible X3 client flows. It is not a brainstorm for possible future Cards or Inbox uses. Names that could disclose personal context are generalized here, while the functional distinctions are preserved.
 
-| Content idea | Best lane | Once-a-day shape | Useful feedback |
-|---|---|---|---|
-| Original E-Ink serial | Inbox V2 text or EPUB | One complete episode, a two-line recap, and a deliberate stopping point | `like` / `dislike`, plus explicit genre or tone vetoes |
-| Pocket puzzle page | Inbox V2 text | A small mix of logic, word, sequence, and observation puzzles with hints and answers | `like` / `dislike` and preferred puzzle type |
-| Project pulse | Daily Cards V1 with a linked report | Current milestone, one risk, and one bounded feature or experiment with effort and first action | `done`, `defer`, or open the full report |
-| Reading discovery | Inbox V2 text | One recommendation based on finished-book signals rather than titles merely saved to a library | `keep`, `like`, or `dislike` by genre |
-| One-page lesson | Inbox V2 text | A compact language, science, history, coding, or craft lesson followed by one recall question | `like` / `dislike` and difficulty preference |
-| Local or weekend guide | Daily Cards V1 plus optional Inbox detail | A few time-bounded events, walks, exhibitions, or low-friction outings from public sources | `keep`, `defer`, or `open-phone` |
-| Field checklist | Inbox V2 text or action item | A maintenance, travel, photography, workshop, garden, or inspection checklist that works offline | `done`, `defer`, or archive |
-| Research brief | Daily Cards V1 with a linked report | Three sourced findings, what changed, and one question worth following | `keep` or open the full report |
-| Quiet creative prompt | Inbox V2 text or image | One writing, sketching, observation, or photography constraint designed for a short offline session | `like` / `dislike` by medium |
-| Personal focus slate | Daily Cards V1 | One priority, two supporting actions, and a clear stopping condition rather than an endless task list | `done` or `defer` |
+### Inbox V2 modules
 
-The same ideas can be produced by different systems, but the transport should stay replaceable and the contract should stay fixed. The device should never need a new firmware feature merely because a different model wrote the next article.
+| Implemented module | What it already produces | Implemented actions |
+|---|---|---|
+| Reader Genome batch | Exactly three distinct, source-backed long-form articles selected across business, design and architecture, custom hardware and E-Ink, and 3D/VFX domains | `like` / `dislike` |
+| E-Ink Serial | One original 800-1,200-word fiction installment with recap, episode, and deliberate stopping point | `like` / `dislike` |
+| Daily Puzzle | One original page of three to five puzzles followed by non-spoiling hints and complete answers | `like` / `dislike` |
+| Project Watchlist | A verified status brief covering selected software projects, changes, risks, and next actions | `keep` / `archive` / `open-phone` |
+| Business Opportunities | A source-backed brief separating concrete opportunities from speculation and covering fit, cost, effort, and next actions | `keep` / `archive` / `open-phone` |
+| Hardware Research | A source-backed compatibility brief for firmware, libraries, tools, resource budgets, risks, and physical-test limits | `keep` / `archive` / `open-phone` |
+| Weekend City Guide | A source-backed guide to current events and practical planning details, presented under a generalized public name | `keep` / `archive` / `open-phone` |
+
+The Reader Genome importer commits its three siblings atomically. The two original-content modules reject external sources and expose feedback actions assigned by the Worker. The four research modules require bounded public HTTPS provenance and end with renderer-safe source notes.
+
+### Daily Cards V1 modules
+
+| Implemented card | What it already summarizes |
+|---|---|
+| Market Briefing | A compact market-status card with cadence, metrics, short sections, and an optional complete report |
+| Weekday Opportunity Scan | Current freelance opportunities, source coverage, and the most useful next check |
+| Weekly 3D Job Search | A clearly weekly 3D-role scan with its cadence visible on the card and in the report |
+| Attention Watch | Newly arrived messages that genuinely require same-day human handling, without copying private message bodies onto the X3 |
+
+All four Cards are retained independently, use an atomic three-cell producer fence, and can expose a verified revisioned plain-text report. They deliberately have no producer-supplied device actions in the current release and are never mirrored into Inbox V2.
+
+### Today and Radar V2 edition
+
+The implemented Today path composes one structured, single-spine EPUB from the sections that are meaningful on that day: a restricted current-day calendar digest; normalized deadlines and significant plans; a commitment-review companion; outstanding V2 actions; recent proof; daily learning; and status diagnostics. Source failures are isolated so one missing section does not suppress unrelated content, and V1 market or attention reports never leak into the Today edition.
+
+### Implementation and feedback boundary
+
+Here, **implemented** means the compatible source has a fixed job or section contract, schema validation, bounded publication and recovery behavior, Worker-owned identifiers and hashes, and device-facing renderer/client support with tests. It does not mean every producer has completed a later unattended run or that every item has been opened on a physical X3.
+
+The X3-to-Worker `like` and `dislike` receipt path and a bounded feedback-profile builder exist for E-Ink Serial and Daily Puzzle. That profile is not yet injected into the scheduled generators, so the system must not claim that a new story or puzzle has already adapted to those preferences. Producer ownership can move between supported AI transports, but the content contracts and one-producer-per-job/date rule stay fixed.
 
 ## What changed in the CrossPoint firmware
 
