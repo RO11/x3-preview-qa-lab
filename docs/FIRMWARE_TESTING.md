@@ -4,7 +4,7 @@ X3 Preview & QA Lab separates four kinds of evidence. Reports and release notes 
 
 ## MODELED
 
-The portable alpha executes browser and Python models. It can verify screen geometry, four-gray output constraints, button-flow state, synthetic file operations, Cards V1 and Inbox V2 protocol behavior, cursor paging, cache semantics, checksums, receipt retry, malformed responses and failure recovery.
+The portable alpha executes browser and Python models. It can verify screen geometry, four-gray output constraints, button-flow state, synthetic file operations, exact-four Cards V1 manifests, Inbox V2 protocol behavior, eight-change cursor paging, ten-page catch-up, newest-64 retention, cache semantics, checksums, receipt retry, malformed responses and failure recovery.
 
 Modeled behavior does not execute ESP32-C3 instructions or prove firmware rendering.
 

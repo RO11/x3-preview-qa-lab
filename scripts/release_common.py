@@ -81,7 +81,7 @@ APPROVED_THIRD_PARTY_LICENSE_EMAILS = {
 
 ROOT_DOCUMENTS = (
     "README.md",
-    "RELEASE_NOTES_v0.1.0-alpha.5.md",
+    "RELEASE_NOTES_v0.1.0-alpha.6.md",
     "LICENSE",
     "THIRD_PARTY_NOTICES.md",
     "SECURITY.md",

@@ -284,7 +284,7 @@ class ReleaseProfileTests(unittest.TestCase):
         self.assertEqual(
             {"product", "version", "target", "firmware"}, set(profile)
         )
-        self.assertEqual("0.1.0-alpha.5", profile["version"])
+        self.assertEqual("0.1.0-alpha.6", profile["version"])
         self.assertEqual({"model": "Xteink X3", "mcu": "ESP32-C3"}, profile["target"])
         self.assertEqual(
             {
@@ -512,7 +512,7 @@ finally:
             self.assertEqual("inspected-not-executed", output["firmware"]["fidelity"])
             self.assertEqual("bundled-stable-baseline", output["firmware"]["provenance_status"])
             self.assertEqual(server.BUNDLED_BASELINE_SHA256, output["firmware"]["sha256"])
-            self.assertEqual("0.1.0-alpha.5", output["release"]["version"])
+            self.assertEqual("0.1.0-alpha.6", output["release"]["version"])
             self.assertIn("/sleep.bmp", {entry["path"] for entry in output["tree"]["entries"]})
 
 
@@ -566,7 +566,7 @@ class EndpointTests(unittest.TestCase):
         self.assertEqual(
             {"product", "version", "target", "firmware"}, set(release)
         )
-        self.assertEqual("0.1.0-alpha.5", release["version"])
+        self.assertEqual("0.1.0-alpha.6", release["version"])
         self.assertTrue(release["firmware"]["bundled"])
         self.assertEqual("none", release["firmware"]["device_access"])
 

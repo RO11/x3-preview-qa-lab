@@ -1,6 +1,6 @@
 # X3 Preview & QA Lab for Windows
 
-**Version 0.1.0-alpha.5 — public alpha candidate**
+**Version 0.1.0-alpha.6 — public alpha candidate**
 
 X3 Preview & QA Lab is an unofficial, local development tool for people building CrossPoint experiences for the Xteink X3. It provides a fast four-gray screen preview, modeled button navigation, synthetic Daily Cards and Inbox traffic, failure injection, and repeatable contract checks without repeatedly flashing a reader.
 
@@ -45,7 +45,7 @@ Use an AI coding/browser assistant with access to the extracted folder. Ask it t
 
 1. Extract the complete ZIP.
 2. Double-click `Launch X3 Preview QA Lab.cmd`.
-3. Alpha.5 includes the official 64-bit CPython `3.14.7` Windows embeddable runtime, so no Python installation is needed. `release-metadata.json` records `bundled_runtime: true` and the pinned runtime provenance.
+3. Alpha.6 includes the official 64-bit CPython `3.14.7` Windows embeddable runtime, so no Python installation is needed. `release-metadata.json` records `bundled_runtime: true` and the pinned runtime provenance.
 4. The lab opens at a local URL bound only to `127.0.0.1`. Press `Ctrl+C` in the launcher window to stop it.
 
 The synthetic demo needs neither Node nor PlatformIO. The archive includes the unchanged official CrossPoint Reader `v1.5.0` stable `firmware.bin` as a read-only, hash-checked community baseline. It contains no XTINCT private firmware, Xteink stock firmware, credentials, device dumps, production endpoints, QEMU runtime or build output. Its firmware policy is `bundled-official-baseline-read-only`: the baseline is inspected but never executed, uploaded or flashed automatically. Configured source-checkout runs may instead inspect an operator-selected local image.
@@ -79,7 +79,8 @@ The on-screen buttons are clickable. Inbox opens in its Cards-style preview. Con
 Open **Network**, choose a scenario, then select **Run Cards + Inbox**. The loopback service covers:
 
 - valid Cards V1 reports and Inbox V2 artifacts;
-- ETag/cache behavior and `8/8/2` cursor paging;
+- ETag/cache behavior, exact-four Cards manifests, and `8/8/2` cursor paging;
+- an 81-item Inbox burst that stops after ten pages, reports catch-up pending, retains the newest 64 items, and converges on a second pass;
 - exact bytes, SHA-256, MIME and revision checks;
 - receipt batching, deduplication and retry;
 - interrupted or short artifacts and reports;

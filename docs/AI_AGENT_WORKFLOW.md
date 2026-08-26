@@ -11,7 +11,7 @@ X3 Preview & QA Lab is currently best used with an AI coding/browser agent that 
 
 For the strongest current experience, give an AI assistant the extracted folder and ask it to follow this document before opening the lab.
 
-Alpha.5 includes this guide in the verified public-package allowlist. Older
+Alpha.6 includes this guide in the verified public-package allowlist. Older
 alpha.4 archives remain frozen; use their matching release page and checksum
 rather than mixing files or instructions between versions.
 
@@ -29,8 +29,8 @@ The agent must stop if the server tries to bind anywhere other than `127.0.0.1`,
 Before launch, verify the downloaded ZIP:
 
 ```powershell
-(Get-FileHash -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.5-bundled-python.zip' -Algorithm SHA256).Hash.ToLowerInvariant()
-Get-Content -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.5-bundled-python.zip.sha256'
+(Get-FileHash -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.6-bundled-python.zip' -Algorithm SHA256).Hash.ToLowerInvariant()
+Get-Content -LiteralPath '.\X3-Preview-QA-Lab-Windows-v0.1.0-alpha.6-bundled-python.zip.sha256'
 ```
 
 The computed hash must exactly match the first field in the separately
@@ -49,7 +49,7 @@ Operate this extracted X3 Preview & QA Lab as a local, read-only QA session.
 1. Read README.md, docs/FIRMWARE_TESTING.md, release-profile.json, and
    release-metadata.json before launch. Read docs/AI_AGENT_WORKFLOW.md from the
    folder when present, or use the canonical online guide linked above.
-2. Verify that the release is v0.1.0-alpha.5 and that the packaged firmware
+2. Verify that the release is v0.1.0-alpha.6 and that the packaged firmware
    policy is bundled-official-baseline-read-only with device_access set to none.
 3. Launch "Launch X3 Preview QA Lab.cmd" only after I authorize running it.
 4. Confirm that it binds only to 127.0.0.1 and opens the local browser UI.

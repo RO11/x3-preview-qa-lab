@@ -161,7 +161,7 @@ The current card contract allows:
 - no producer-supplied actions in this release; and
 - an optional complete plain-text report of at most 24 KiB with no NUL characters.
 
-The Worker, not the producer, creates the card revision and any authenticated report descriptor. On the X3, the manifest is fetched with ETag support. A `304 Not Modified` is accepted only if every referenced cached card and report still validates. Changed reports stream to hidden revisioned files, and exact byte count plus SHA-256 must pass before atomic promotion.
+The Worker, not the producer, creates the card revision and any authenticated report descriptor. The device-facing manifest always represents the four fixed Daily Cards slots; a partial manifest is rejected as incomplete instead of silently shrinking the dashboard. On the X3, the manifest is fetched with ETag support. A `304 Not Modified` is accepted only if every referenced cached card and report still validates. Changed reports stream to hidden revisioned files, and exact byte count plus SHA-256 must pass before atomic promotion.
 
 The device UI presents Back, Refresh, Open, and Next. Opening a full report borrows the text reader without adding it to Recent Books or disturbing the reader's normal book-resume state.
 
@@ -207,7 +207,9 @@ An accepted producer envelope is converted into a server-owned delivery. A simpl
 
 The IDs, revision, digest, byte count, SHA-256, module, actions, timestamps, and device routing shown in a real delivery are derived or constrained by the server. The repeated characters above are illustrative placeholders, not hashes for the example text.
 
-The X3 requests cursor-ordered pages of at most 16 changes. It downloads artifacts from the same authenticated origin, rejects redirects, streams large objects instead of buffering them whole, and verifies exact bytes and SHA-256 before committing. Tombstones remove recalled items. Failed or interrupted transfers preserve the last committed state and do not silently advance the cursor.
+The public server contract permits a page ceiling of 16 changes, while the constrained X3 client requests eight at a time. One refresh pass processes at most ten pages, or 80 changes, then reports `CATCH_UP_PENDING` when more remain so the reader stays responsive and a later refresh can continue from the committed cursor. The device presents the newest 64 validated live items when the retained stream exceeds display capacity. The 81-item synthetic scenario proves first-pass catch-up and second-pass convergence.
+
+The X3 downloads artifacts from the same authenticated origin, rejects redirects, streams large objects instead of buffering them whole, and verifies exact bytes and SHA-256 before committing. Tombstones remove recalled items. Failed or interrupted transfers preserve the last committed state and do not silently advance the cursor.
 
 Inbox actions are bounded data, not remote code. Depending on item kind and module, the registry may expose `keep`, `archive`, `done`, `defer`, `open-phone`, `like`, or `dislike`. Device receipts are queued in a bounded outbox and retried idempotently. A local delete is never blocked just because the network or receipt queue is unavailable.
 
@@ -277,6 +279,7 @@ This design treats a failed refresh as a reason to preserve the last known-good 
 - invalid source or off-schedule date: reject the entire item;
 - short artifact or wrong hash: discard staging and keep the old artifact;
 - interrupted Inbox page: retain the committed prefix and resume safely;
+- more than 80 pending Inbox changes: report catch-up pending, show the newest bounded set, and continue on the next refresh;
 - acknowledgement failure: retain the exact outbox prefix for retry; and
 - no network: open verified cached content and report the refresh failure visibly.
 

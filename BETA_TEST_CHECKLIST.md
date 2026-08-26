@@ -1,6 +1,6 @@
 # Public alpha beta checklist
 
-Target: `0.1.0-alpha.5`
+Target: `0.1.0-alpha.6`
 
 ## Automated candidate gate
 
