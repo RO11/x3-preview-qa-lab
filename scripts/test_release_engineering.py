@@ -17,6 +17,8 @@ import zipfile
 from contextlib import contextmanager
 from pathlib import Path
 
+from PIL import Image
+
 import build_portable
 import sanitize_release
 from release_common import (
@@ -65,26 +67,77 @@ class ReleaseEngineeringTests(unittest.TestCase):
     def test_documented_examples_have_native_and_sharp_presentation_pngs(self) -> None:
         native_names = (
             "x3-home-native-528x792.png",
-            "daily-cards-v1-project-watch-528x792.png",
+            "daily-cards-v1-market-briefing-528x792.png",
             "inbox-v2-default-preview-528x792.png",
             "inbox-v2-feedback-actions-528x792.png",
             "inbox-v2-open-article-528x792.png",
             "inbox-v2-puzzle-preview-528x792.png",
         )
+        native_palette = {
+            (0, 0, 0),
+            (85, 85, 85),
+            (170, 170, 170),
+            (255, 255, 255),
+        }
         for name in native_names:
-            data = (SIMULATOR_ROOT / "docs" / "images" / name).read_bytes()
+            native_path = SIMULATOR_ROOT / "docs" / "images" / name
+            data = native_path.read_bytes()
             self.assertEqual(b"\x89PNG\r\n\x1a\n", data[:8], name)
             self.assertEqual(b"IHDR", data[12:16], name)
             self.assertEqual((528, 792), struct.unpack(">II", data[16:24]), name)
 
             doubled_name = name.replace("-528x792.png", "-2x-1056x1584.png")
-            doubled = (SIMULATOR_ROOT / "docs" / "images" / "engagement" / doubled_name).read_bytes()
+            doubled_path = SIMULATOR_ROOT / "docs" / "images" / "engagement" / doubled_name
+            doubled = doubled_path.read_bytes()
             self.assertEqual(b"\x89PNG\r\n\x1a\n", doubled[:8], doubled_name)
             self.assertEqual((1056, 1584), struct.unpack(">II", doubled[16:24]), doubled_name)
+            with Image.open(native_path) as native_image, Image.open(doubled_path) as doubled_image:
+                native_rgb = native_image.convert("RGB")
+                doubled_rgb = doubled_image.convert("RGB")
+                colors = native_rgb.getcolors(maxcolors=528 * 792)
+                self.assertIsNotNone(colors, name)
+                self.assertTrue({color for _count, color in colors}.issubset(native_palette), name)
+                self.assertEqual(
+                    native_rgb.resize((1056, 1584), Image.Resampling.NEAREST).tobytes(),
+                    doubled_rgb.tobytes(),
+                    doubled_name,
+                )
 
         showcase = (SIMULATOR_ROOT / "docs" / "images" / "engagement" /
                     "xtinct-x3-native-showcase-2x.png").read_bytes()
         self.assertEqual((3456, 3688), struct.unpack(">II", showcase[16:24]))
+        content_map = (SIMULATOR_ROOT / "docs" / "images" / "engagement" /
+                       "xtinct-implemented-content-map-2400x1740.png").read_bytes()
+        self.assertEqual((2400, 1740), struct.unpack(">II", content_map[16:24]))
+
+    def test_public_demo_exposes_four_v1_cards_seven_v2_modules_and_broker_provenance(self) -> None:
+        app = (SIMULATOR_ROOT / "web" / "app.js").read_text(encoding="utf-8")
+        for task_id in (
+            "market-briefing",
+            "weekday-freelancer-scan",
+            "3d-job-search",
+            "outlook-attention-watch",
+        ):
+            self.assertIn(f'taskId: "{task_id}"', app)
+        for module_id in (
+            "spark-serial-demo",
+            "reader-genome-demo",
+            "daily-puzzle-demo",
+            "project-watchlist-demo",
+            "business-opportunities-demo",
+            "hardware-research-demo",
+            "weekend-city-guide-demo",
+        ):
+            self.assertIn(f'moduleId: "{module_id}"', app)
+        self.assertIn("ChatGPT + Interactive Brokers app pattern", app)
+        self.assertIn("Fictional values; read-only; no trades", app)
+
+        guide = (SIMULATOR_ROOT / "docs" / "AI_FED_CROSSPOINT_PIPELINE.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("### Daily Cards V1 flow", guide)
+        self.assertIn("### Inbox V2 flow", guide)
+        self.assertIn("prevents the same result being duplicated into both feeds", guide)
 
     def test_lyra_home_header_has_no_false_title_or_divider(self) -> None:
         renderer = (SIMULATOR_ROOT / "web" / "x3-renderer.js").read_text(encoding="utf-8")

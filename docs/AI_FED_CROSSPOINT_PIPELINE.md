@@ -13,30 +13,54 @@ The goal was to turn a small E-Ink reader into a quiet, once-a-day information s
 
 The X3 wakes on a bounded schedule, connects to a saved Wi-Fi network, downloads only new or changed material, verifies it, stores it on microSD, and returns to sleep. Manual refresh remains available, but normal use is designed around checking the device once a day.
 
+They are split because they solve different reading problems. V1 is a fixed four-card dashboard: each producer replaces its own current card, cadence stays visible, and an optional plain-text report sits behind the glanceable summary. V2 is an item inbox: deliveries have immutable artifacts, cursor paging, per-item actions, deletion state and receipts. Keeping them separate prevents long-form deliveries from crowding the status dashboard and prevents the same result being duplicated into both feeds.
+
+### Daily Cards V1 flow
+
 ```mermaid
 flowchart LR
-    A[ChatGPT scheduled producer] --> D[Strict producer adapter]
-    B[Google Spark producer] --> D
-    C[Grok producer] --> D
-    D --> E[Schema, date, size and provenance validation]
-    E --> F[Daily Cards V1]
-    E --> G[Inbox V2]
-    F --> H[X3 Daily Cards module]
-    G --> I[X3 Inbox module]
-    H --> J[Verified SD cache]
-    I --> J
-    J --> K[Once-a-day E-Ink reading]
+    A[Interactive Brokers app] --> B[ChatGPT Market Briefing]
+    C[Other scheduled status producers] --> D[One owned card row each]
+    B --> D
+    D --> E[Atomic V1 handoff]
+    E --> F[Schema, cadence, date and size validation]
+    F --> G[Fixed four-card manifest]
+    G --> H[X3 Daily Cards]
+    H --> I[Verified SD cache]
+    I --> J[Glanceable card + optional report]
+```
+
+The Interactive Brokers branch is analysis-only in this design. ChatGPT reads the authorised broker context, removes account and order identifiers, prepares the bounded Market Briefing, and never places or modifies an order.
+
+### Inbox V2 flow
+
+```mermaid
+flowchart LR
+    A[ChatGPT exact email] --> D[One producer per job and date]
+    B[Google Spark constrained task] --> D
+    C[Grok write-only MCP] --> D
+    D --> E[Schema, provenance, bytes and SHA validation]
+    E --> F[Cursor manifest + immutable artifacts]
+    F --> G[X3 Inbox]
+    G --> H[Verified SD cache]
+    H --> I[Open, delete and allowlisted feedback]
+    I --> J[Retryable receipt outbox]
+    J --> E
 ```
 
 The arrows do not mean all three AIs write the same item. The system enforces **one producer for one logical job and date**. Moving a job from one producer to another requires disabling the prior owner so duplicate articles cannot race each other.
 
 ## Modeled preview: Cards V1 and an AI-style Inbox V2 feed
 
-The following overview uses six direct, lossless `528 x 792` framebuffer exports from the public lab. They are doubled with nearest-neighbor scaling so browser and high-density displays do not soften the X3 pixels. The screens are not cropped from the surrounding simulator UI or pasted into a pretend physical-device photograph.
+The following overview uses six direct, lossless `528 x 792` framebuffer exports from the public lab. The Daily Cards screen is a fictional market briefing whose on-screen producer path identifies the ChatGPT + Interactive Brokers app pattern. The frames are doubled with nearest-neighbor scaling so browser and high-density displays do not soften the X3 pixels. They are not cropped from the surrounding simulator UI or pasted into a pretend physical-device photograph.
 
 <a href="images/engagement/xtinct-x3-native-showcase-2x.png"><img src="images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens covering Home, Daily Cards V1, Inbox V2, feedback, an article and a puzzle"></a>
 
-All visible content is fictional. The serial is an original 876-word demonstration with a recap and deliberate stopping point. Northstar Notes, Tideglass Relay, Maple Arc Studio, Bellwether Transit, Lantern Foldworks, Thimbleglass Instruments and every named person, event, metric and date are invented. No private content was renamed or lightly redacted.
+All visible content is fictional. The serial is an original 876-word demonstration with a recap and deliberate stopping point. Meridian 50, Copperline, Glasswing Energy, Harbor Bond, Northstar Notes, Tideglass Relay, Maple Arc Studio, Bellwether Transit, Lantern Foldworks, Thimbleglass Instruments and every named person, ticker, price, event, metric and date are invented. No private content was renamed or lightly redacted.
+
+### Implemented module map
+
+<a href="images/engagement/xtinct-implemented-content-map-2400x1740.png"><img src="images/engagement/xtinct-implemented-content-map-2400x1740.png" width="1200" alt="High-resolution sanitized map of the implemented Daily Cards V1, Inbox V2, Today and system modules"></a>
 
 ### Default Inbox V2 card preview
 
@@ -61,6 +85,17 @@ The three producers use different transports, but they converge on the same boun
 ### ChatGPT
 
 A scheduled ChatGPT task creates a complete JSON envelope and sends it as the sole plain-text body of an allowlisted automation email. The subject identifies the job. There is no greeting, Markdown fence, attachment, excerpt, or instruction outside the JSON object.
+
+For the Market Briefing only, the production pattern can add the official **Interactive Brokers app for ChatGPT** as a read-only evidence source. The public demo does not connect to an account and does not contain a real position, quote, account identifier or order. Its invented figures simply show the layout and make the source path visible.
+
+To reproduce that pattern safely:
+
+1. In ChatGPT, open **Settings → Apps**, search for **Interactive Brokers**, connect it through Interactive Brokers' own sign-in screen, and authorise only the account and access you intend to expose. See the [Interactive Brokers AI Hub](https://www.interactivebrokers.com/en/trading/ai-hub.php) and [OpenAI's Apps guide](https://help.openai.com/en/articles/11487775-connectors-in-chatgpt).
+2. Keep the briefing prompt analysis-only: reconcile positions and quote freshness, exclude account IDs, order IDs and raw connector output, and state **No trades placed or modified**.
+3. Convert the completed research into the bounded V1 `market-briefing` card. The summary and first metric repeat the visible cadence; the optional report carries the longer plain-text analysis.
+4. Commit only the Market Briefing producer's owned V1 handoff. The Worker validates it and the X3 downloads the changed revision. Do not mirror it into Inbox V2 or Today.
+
+The connector may support broader broker capabilities, but this public pattern deliberately uses it for decision support only. Installing this repository never connects an Interactive Brokers account.
 
 ### Google Spark
 

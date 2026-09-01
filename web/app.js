@@ -70,22 +70,65 @@ async function json(url, options) {
 function publicDemoFixtures(raw) {
   const cardTemplates = [
     {
-      title: "Fictional Project Watch",
-      summary: "Three invented products moved this week; one bounded experiment is ready for a decision.",
-      metrics: [{ value: "3", label: "projects" }, { value: "2", label: "moving" }, { value: "1", label: "decision" }],
+      taskId: "market-briefing",
+      title: "Market Briefing - FICTIONAL",
+      summary: "CADENCE: MON-SAT / 03:00 - Imaginary markets ended mixed as the Meridian 50 rose and Copperline metals eased.",
+      metrics: [
+        { value: "MON-SAT / 03:00", label: "CADENCE" },
+        { value: "+0.4%", label: "MERIDIAN 50" },
+        { value: "-0.7%", label: "COPPERLINE" }
+      ],
       sections: [
-        { heading: "SIGNAL", lines: ["Northstar Notes finished offline search", "Tideglass Relay needs a retry test"] },
-        { heading: "ONE THING TO BUILD", lines: ["Prototype a one-tap morning brief; low cost, half a day"] }
-      ]
+        { heading: "OVERNIGHT", lines: ["Glasswing Energy lifted the Meridian 50", "Copperline metals cooled after a four-day rise"] },
+        { heading: "WATCH", lines: ["Harbor Bond yield held at an invented 3.2%"] },
+        { heading: "PRODUCER PATH", lines: ["ChatGPT + Interactive Brokers app pattern", "Fictional values; read-only; no trades"] }
+      ],
+      hasReport: true
     },
     {
-      title: "Fictional Opportunity Scan",
-      summary: "A made-up studio brief separates one practical lead from two ideas that need more evidence.",
-      metrics: [{ value: "1", label: "strong fit" }, { value: "2", label: "watch" }, { value: "Low", label: "cost" }],
+      taskId: "weekday-freelancer-scan",
+      title: "Opportunity Scan - FICTIONAL",
+      summary: "CADENCE: WEEKDAYS / 08:00 - One invented studio brief is a strong fit; two need more evidence.",
+      metrics: [
+        { value: "WEEKDAYS / 08:00", label: "CADENCE" },
+        { value: "1", label: "STRONG FIT" },
+        { value: "2", label: "WATCH" }
+      ],
       sections: [
         { heading: "BEST LEAD", lines: ["Maple Arc Studio wants a compact E-Ink prototype", "First action: prepare a two-screen mockup"] },
-        { heading: "CADENCE", lines: ["DEMO WEEKLY - next review in seven days"] }
-      ]
+        { heading: "BOUNDARY", lines: ["Fictional company and opportunity", "No application or external contact"] }
+      ],
+      hasReport: true
+    },
+    {
+      taskId: "3d-job-search",
+      title: "3D Job Search - WEEKLY",
+      summary: "CADENCE: WEEKLY / MON 08:00 - Two fictional 3D roles match the demo profile; one is remote-friendly.",
+      metrics: [
+        { value: "WEEKLY / MON 08:00", label: "CADENCE" },
+        { value: "2", label: "MATCHES" },
+        { value: "1", label: "REMOTE" }
+      ],
+      sections: [
+        { heading: "SHORTLIST", lines: ["Lantern Foldworks - realtime environment artist", "Paper Harbor - procedural tools generalist"] },
+        { heading: "NEXT", lines: ["Review a fictional portfolio brief on the phone"] }
+      ],
+      hasReport: true
+    },
+    {
+      taskId: "outlook-attention-watch",
+      title: "Attention Watch - FICTIONAL",
+      summary: "CADENCE: WEEKDAYS / 03:30 - One invented message needs a same-day decision; routine mail stays off the reader.",
+      metrics: [
+        { value: "WEEKDAYS / 03:30", label: "CADENCE" },
+        { value: "1", label: "TODAY" },
+        { value: "4", label: "FILTERED" }
+      ],
+      sections: [
+        { heading: "NEEDS ATTENTION", lines: ["Approve the fictional Tideglass prototype window"] },
+        { heading: "PRIVACY", lines: ["No sender, address or message body is shown"] }
+      ],
+      hasReport: true
     }
   ];
   const inboxTemplates = [
@@ -95,6 +138,7 @@ function publicDemoFixtures(raw) {
       title: "Spark Serial: The Paper City",
       summary: "A courier enters a station where tomorrow's notices are already printing - and one bears her own name.",
       points: ["Original fiction with a two-line recap", "Like or dislike joins the feedback queue"],
+      actions: ["like", "dislike"],
       pages: [
         `SPARK DEMO · FICTIONAL SERIAL
 
@@ -214,6 +258,7 @@ All people, companies and events in this demonstration are fictional.`
       title: "Reader Genome: The Quiet Factory",
       summary: "A fictional design essay asks what changes when a workshop treats silence as a measurable output.",
       points: ["A made-up company anchors the case study", "The structure mirrors a long-form daily article"],
+      actions: ["like", "dislike"],
       pages: [
         `READER GENOME DEMO · FICTIONAL CASE STUDY
 
@@ -241,9 +286,54 @@ All organisations, measurements and people in this demonstration are invented; t
       title: "Spark Puzzle: The Lighthouse Page",
       summary: "Three original demonstration puzzles designed for a short, offline morning break.",
       points: ["One logic puzzle and one word puzzle", "Hints and answers stay in the same artifact"],
+      actions: ["like", "dislike"],
       pages: [
         "SPARK DEMO · SYNTHETIC PUZZLES\n\nPOCKET PUZZLE PAGE\n\nLOGIC\nThree boxes are all labelled incorrectly: APPLES, PEARS and MIXED. You may draw one fruit from one box. Which box should you choose to identify all three?\n\nWORDS\nChange COLD to WARM one letter at a time. Every step must remain a four-letter English word.\n\nMove to the next page only when you want the hints.",
         "HINTS\n\nFor the boxes, begin with the label that cannot possibly describe its contents.\n\nFor the word ladder, a path can pass through something tied with string, then a playing card.\n\nANSWERS\n\nDraw from MIXED; that fruit identifies the box because every label is wrong, and the others follow by elimination.\n\nOne ladder is COLD, CORD, CARD, WARD, WARM."
+      ]
+    },
+    {
+      moduleId: "project-watchlist-demo",
+      kind: "text",
+      title: "Project Watch: Northstar Notes",
+      summary: "A fictional project brief separates observed progress from unknowns and proposes one bounded experiment.",
+      points: ["Observed, unknown and proposed stay separate", "Cost, effort and first action are visible"],
+      actions: ["keep", "archive", "open-phone"],
+      pages: [
+        "PROJECT WATCHLIST DEMO\n\nNORTHSTAR NOTES\n\nOBSERVED\nOffline search now handles an invented 2,400-note library. The demo build passes its local index checks.\n\nUNKNOWN\nBattery impact on a physical reader has not been measured.\n\nONE THING TO BUILD\nAdd a one-tap morning brief prototype. Cost: none. Effort: half a day. First action: sketch two native X3 screens.\n\nAll projects, measurements and results are fictional."
+      ]
+    },
+    {
+      moduleId: "business-opportunities-demo",
+      kind: "text",
+      title: "Opportunity Brief: Maple Arc",
+      summary: "A source-shaped but wholly invented opportunity is scored for fit, cost, effort and the first useful check.",
+      points: ["Concrete lead separated from speculation", "No application is sent from the X3"],
+      actions: ["keep", "archive", "open-phone"],
+      pages: [
+        "BUSINESS OPPORTUNITY DEMO\n\nMAPLE ARC STUDIO\n\nFIT\nStrong match for a compact offline E-Ink prototype.\n\nCOST\nLow; use the existing simulator and synthetic fixtures.\n\nEFFORT\nOne day for a bounded proof.\n\nFIRST ACTION\nOpen the fictional brief on the phone and verify the deliverables before responding.\n\nThe company, brief and figures are invented."
+      ]
+    },
+    {
+      moduleId: "hardware-research-demo",
+      kind: "text",
+      title: "Hardware Brief: Four-Gray UI",
+      summary: "A fictional compatibility note checks memory, display format, recovery and the limits that still require hardware.",
+      points: ["Resource budgets before feature claims", "Physical E-Ink remains a separate gate"],
+      actions: ["keep", "archive", "open-phone"],
+      pages: [
+        "HARDWARE RESEARCH DEMO\n\nFOUR-GRAY UI PATH\n\nCOMPATIBILITY\nThe modeled screen targets 528 x 792 and four native gray levels.\n\nRISKS\nBrowser rendering cannot prove panel waveform, button electronics, radio behavior or fragmented heap.\n\nNEXT TEST\nRun the bounded simulator contract, then reserve physical validation for the exact firmware hash.\n\nThis is synthetic documentation, not a hardware test result."
+      ]
+    },
+    {
+      moduleId: "weekend-city-guide-demo",
+      kind: "text",
+      title: "Weekend Guide: Paper Harbor",
+      summary: "An invented city guide turns three imaginary events into a compact offline Saturday plan.",
+      points: ["Times and venues are fictional", "Practical details fit one quiet reading session"],
+      actions: ["keep", "archive", "open-phone"],
+      pages: [
+        "WEEKEND CITY GUIDE DEMO\n\nPAPER HARBOR\n\n09:30 - Lantern Market\nSmall-print makers and imaginary bookbinders beneath the old signal hall.\n\n13:00 - Tideglass Walk\nA short fictional riverside route with a sheltered lunch stop.\n\n18:15 - Quiet Machines\nAn invented exhibition of mechanical displays and paper clocks.\n\nEvery event, venue, time and travel detail is fictional."
       ]
     }
   ];
@@ -261,24 +351,20 @@ All organisations, measurements and people in this demonstration are invented; t
         "Use the modeled page controls to check navigation, progress and end-of-book behavior."
       ]]
     }],
-    cards: (raw?.cards || []).map((card, index) => ({
-      taskId: card.taskId,
-      status: "Demo",
-      generatedAt: "2026-01-15T08:00:00Z",
-      hasReport: Boolean(card.hasReport),
-      ...(cardTemplates[index] || {
-        title: `Sample Card ${index + 1}`,
-        summary: "Synthetic card content for layout and navigation testing.",
-        metrics: [{ value: String(index + 1), label: "sample" }],
-        sections: [{ heading: "DEMO", lines: ["No production source is connected"] }]
-      })
-    })),
-    inbox: (raw?.inbox || []).map((item, index) => {
-      const template = inboxTemplates[index] || {
-        title: `Sample Inbox Item ${index + 1}`,
-        summary: "Synthetic inbox content for layout and action testing.",
-        points: ["No private source data"]
+    cards: cardTemplates.map((template, index) => {
+      const card = (raw?.cards || []).find((candidate) => candidate.taskId === template.taskId)
+        || raw?.cards?.[index]
+        || {};
+      return {
+        taskId: template.taskId,
+        status: "Demo",
+        generatedAt: "2026-01-15T08:00:00Z",
+        hasReport: template.hasReport ?? Boolean(card.hasReport),
+        ...template
       };
+    }),
+    inbox: inboxTemplates.map((template, index) => {
+      const item = raw?.inbox?.[index] || {};
       return {
         itemId: `demo-inbox-${String(index + 1).padStart(2, "0")}`,
         moduleId: template.moduleId || "demo-source",
@@ -287,7 +373,7 @@ All organisations, measurements and people in this demonstration are invented; t
         createdAt: "2026-01-15T08:00:00Z",
         state: "pending",
         digest: { schema: "xtinct.inbox-digest/v1", summary: template.summary, points: template.points },
-        actions: ["like", "dislike"],
+        actions: template.actions || item.actions || [],
         pages: Array.isArray(template.pages) ? template.pages : undefined
       };
     })

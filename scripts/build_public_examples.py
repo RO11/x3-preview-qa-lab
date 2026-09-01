@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -16,11 +17,48 @@ MUTED = "#5b5d56"
 
 EXAMPLES = (
     ("HOME", "x3-home-native-528x792.png"),
-    ("DAILY CARDS V1", "daily-cards-v1-project-watch-528x792.png"),
+    ("MARKET · CARDS V1", "daily-cards-v1-market-briefing-528x792.png"),
     ("INBOX V2", "inbox-v2-default-preview-528x792.png"),
     ("LIKE / DISLIKE", "inbox-v2-feedback-actions-528x792.png"),
     ("OPEN ARTICLE", "inbox-v2-open-article-528x792.png"),
     ("DAILY PUZZLE", "inbox-v2-puzzle-preview-528x792.png"),
+)
+
+CONTENT_COLUMNS = (
+    (
+        "DAILY CARDS V1",
+        "Four fixed, replace-in-place briefing cards",
+        (
+            ("Market Briefing", "ChatGPT + Interactive Brokers app pattern; bounded read-only analysis, no trades."),
+            ("Opportunity Scan", "Weekday freelance leads, source coverage and the next useful check."),
+            ("3D Job Search", "Weekly roles with WEEKLY cadence visible on the card and report."),
+            ("Attention Watch", "Only same-day human attention; private message bodies stay off-device."),
+        ),
+    ),
+    (
+        "INBOX V2",
+        "Longer immutable artifacts with per-item actions",
+        (
+            ("Reader Genome", "Exactly three source-backed long-form articles in one atomic batch."),
+            ("E-Ink Serial", "Original 800-1,200-word episode with recap, stopping point and feedback."),
+            ("Daily Puzzle", "Three to five puzzles, non-spoiling hints and complete answers."),
+            ("Project Watchlist", "Observed changes, unknowns, risks and one bounded experiment."),
+            ("Business Opportunities", "Fit, cost, effort, source notes and first action."),
+            ("Hardware Research", "Compatibility, budgets, risks and physical-test boundaries."),
+            ("Weekend City Guide", "Current planning details in a compact offline guide."),
+        ),
+    ),
+    (
+        "TODAY + SYSTEM",
+        "One daily edition plus reliable offline mechanics",
+        (
+            ("Today / Radar EPUB", "Calendar, deadlines, plans, commitments, actions, proof, learning and diagnostics."),
+            ("Feedback loop", "Like, dislike, keep, archive, open-phone and delete receipts use a retryable outbox."),
+            ("Verified cache", "Bytes, SHA-256 and revisions are checked before atomic promotion on microSD."),
+            ("Daily wake", "Bounded wake, refresh and retry windows support one deliberate check each day."),
+            ("Sleep screen", "Native 528 x 792 four-gray full-bleed image delivery."),
+        ),
+    ),
 )
 
 
@@ -35,6 +73,62 @@ def load_native(name: str) -> Image.Image:
     if image.size != NATIVE_SIZE:
         raise SystemExit(f"{name} is {image.size}, expected native X3 {NATIVE_SIZE}")
     return image
+
+
+def wrapped_lines(text: str, width: int) -> list[str]:
+    return textwrap.wrap(text, width=width, break_long_words=False, break_on_hyphens=False)
+
+
+def build_content_map() -> Path:
+    width, height = 2400, 1740
+    margin = 70
+    gutter = 44
+    header_height = 205
+    footer_height = 145
+    column_width = (width - margin * 2 - gutter * 2) // 3
+    card_top = header_height
+    card_bottom = height - footer_height
+    sheet = Image.new("RGB", (width, height), PAPER)
+    draw = ImageDraw.Draw(sheet)
+
+    draw.text((margin, 38), "XTINCT — IMPLEMENTED CONTENT MAP", fill=INK, font=font(70, bold=True))
+    draw.text(
+        (margin, 118),
+        "Sanitized module inventory · fictional examples · V1 and V2 stay deliberately separate",
+        fill=MUTED,
+        font=font(32),
+    )
+
+    for column_index, (heading, subtitle, items) in enumerate(CONTENT_COLUMNS):
+        x = margin + column_index * (column_width + gutter)
+        draw.rounded_rectangle((x, card_top, x + column_width, card_bottom), radius=18, outline=INK, width=4)
+        draw.rectangle((x, card_top, x + column_width, card_top + 118), fill=INK)
+        draw.text((x + 28, card_top + 22), heading, fill=PAPER, font=font(39, bold=True))
+        draw.text((x + 28, card_top + 132), subtitle, fill=MUTED, font=font(25))
+        y = card_top + 202
+        for item_heading, item_body in items:
+            draw.text((x + 28, y), item_heading, fill=INK, font=font(30, bold=True))
+            y += 40
+            for line in wrapped_lines(item_body, 43):
+                draw.text((x + 28, y), line, fill=MUTED, font=font(23))
+                y += 31
+            y += 25
+
+    draw.text(
+        (margin, height - footer_height + 28),
+        "MARKET SOURCE PATTERN: ChatGPT + Interactive Brokers app · read-only analysis · no orders",
+        fill=INK,
+        font=font(30, bold=True),
+    )
+    draw.text(
+        (margin, height - footer_height + 76),
+        "Every company, ticker, price, role, event and article visible in the public demo is invented.",
+        fill=MUTED,
+        font=font(28),
+    )
+    output = OUT / "xtinct-implemented-content-map-2400x1740.png"
+    sheet.save(output, optimize=True)
+    return output
 
 
 def main() -> None:
@@ -87,7 +181,11 @@ def main() -> None:
     )
     output = OUT / "xtinct-x3-native-showcase-2x.png"
     sheet.save(output, optimize=True)
-    print(f"Wrote {len(doubled)} 2x frames and {output.name} ({sheet.size[0]} x {sheet.size[1]})")
+    content_map = build_content_map()
+    print(
+        f"Wrote {len(doubled)} 2x frames, {output.name} ({sheet.size[0]} x {sheet.size[1]}) "
+        f"and {content_map.name}"
+    )
 
 
 if __name__ == "__main__":

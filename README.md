@@ -8,11 +8,23 @@ For a public-safe overview of the experimental CrossPoint content modifications 
 
 ## Modeled native X3 walkthrough
 
-<a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens: Home, Daily Cards V1, Inbox V2, Like and Dislike actions, an opened fictional article, and a daily puzzle"></a>
+<a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens: Home, a fictional stock-market Daily Card, Inbox V2, Like and Dislike actions, an opened fictional article, and a daily puzzle"></a>
 
 This `3456 x 3688` overview is assembled from six exact `528 x 792` modeled framebuffers. Each screen is doubled with nearest-neighbor scaling for sharp browser presentation; no interpolated detail is invented. Click the image for the full-resolution version. The compact Browse List remains a separate secondary Inbox view.
 
-The content is deliberately interesting but entirely fictional. The serial is an original 876-word episode with a recap and stopping point; the project names, companies, people, opportunities, measurements, dates and events are invented. No private article, account, reading history or production feed was adapted or copied.
+The content is deliberately interesting but entirely fictional. The serial is an original 876-word episode with a recap and stopping point; the project names, companies, tickers, prices, people, opportunities, measurements, dates and events are invented. No private article, brokerage account, holding, reading history or production feed was adapted or copied.
+
+### Fictional Market Briefing in Daily Cards V1
+
+<a href="docs/images/daily-cards-v1-market-briefing-528x792.png"><img src="docs/images/engagement/daily-cards-v1-market-briefing-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Daily Cards V1 market briefing with fictional prices and a visible ChatGPT plus Interactive Brokers app producer path"></a>
+
+The market card shows the real producer pattern—**ChatGPT + the official Interactive Brokers app**—while every displayed market name and value remains invented. The public lab does not connect to a broker, does not include portfolio data, and cannot place a trade. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#chatgpt) explains how to reproduce the read-only analysis and bounded V1 handoff without exposing account or order identifiers.
+
+### Implemented content map
+
+<a href="docs/images/engagement/xtinct-implemented-content-map-2400x1740.png"><img src="docs/images/engagement/xtinct-implemented-content-map-2400x1740.png" width="1200" alt="High-resolution sanitized map of the implemented Daily Cards V1, Inbox V2, Today and system modules"></a>
+
+V1 and V2 are separate on purpose. Daily Cards V1 is a fixed four-card dashboard for market, opportunity, weekly 3D-job and attention status. Inbox V2 carries longer immutable articles, fiction, puzzles, project briefs, opportunity research, hardware research and city guides with per-item actions and receipts. Today/Radar is a separate daily EPUB spine for calendar, deadlines, plans, commitments, proof, learning and diagnostics.
 
 ### Default Inbox V2 preview
 
