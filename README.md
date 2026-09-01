@@ -6,19 +6,27 @@ X3 Preview & QA Lab is an unofficial, local development tool for people building
 
 For a public-safe overview of the experimental CrossPoint content modifications and the producer formats used by ChatGPT, Google Spark, and Grok, read [How we extended CrossPoint with AI-fed Cards and Inbox modules](docs/AI_FED_CROSSPOINT_PIPELINE.md).
 
-## Modeled Inbox V2 preview
+## Modeled native X3 walkthrough
 
-These are lossless native `528 x 792` PNG exports from the lab's modeled four-gray X3 canvas. The Inbox normally opens in the Cards-style preview shown first; the compact Browse List is a separate secondary view. These are not screenshots from physical E-Ink hardware and contain no generated or personal production content.
+<a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens: Home, Daily Cards V1, Inbox V2, Like and Dislike actions, an opened fictional article, and a daily puzzle"></a>
 
-### Default Inbox V2 card preview
+This `3456 x 3688` overview is assembled from six exact `528 x 792` modeled framebuffers. Each screen is doubled with nearest-neighbor scaling for sharp browser presentation; no interpolated detail is invented. Click the image for the full-resolution version. The compact Browse List remains a separate secondary Inbox view.
 
-![Modeled native 528 by 792 X3 Inbox V2 card preview for a fictional Spark demo item](docs/images/inbox-v2-default-preview-528x792.png)
+The content is deliberately interesting but entirely fictional. The serial is an original 876-word episode with a recap and stopping point; the project names, companies, people, opportunities, measurements, dates and events are invented. No private article, account, reading history or production feed was adapted or copied.
 
-### Opened synthetic text artifact
+### Default Inbox V2 preview
 
-![Modeled native 528 by 792 X3 text reader showing a fictional Spark demo article](docs/images/inbox-v2-open-article-528x792.png)
+<a href="docs/images/inbox-v2-default-preview-528x792.png"><img src="docs/images/engagement/inbox-v2-default-preview-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Inbox V2 preview for the fictional Spark serial The Paper City"></a>
 
-**Evidence label: MODELED / SYNTHETIC.** Both images are shown individually at their native renderer resolution instead of being enlarged from browser thumbnails. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs the content modules already implemented in the compatible XTINCT system, rather than proposing new Inbox or Card ideas.
+### Like / dislike feedback
+
+<a href="docs/images/inbox-v2-feedback-actions-528x792.png"><img src="docs/images/engagement/inbox-v2-feedback-actions-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Inbox actions menu with Like selected and Dislike available"></a>
+
+### Opened fictional article
+
+<a href="docs/images/inbox-v2-open-article-528x792.png"><img src="docs/images/engagement/inbox-v2-open-article-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 reader showing the fictional Spark serial The Paper City"></a>
+
+**Evidence label: MODELED / SYNTHETIC.** These are direct framebuffer exports, not cropped browser screenshots, device mockups or photographs of physical E-Ink hardware. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs content modules already implemented in the compatible XTINCT system.
 
 It complements the [official CrossPoint Simulator](https://github.com/crosspoint-reader/crosspoint-simulator); it does not replace it. The official simulator is the preferred route for shared firmware rendering. This lab focuses on Windows-friendly product-flow preview and deterministic QA scenarios.
 

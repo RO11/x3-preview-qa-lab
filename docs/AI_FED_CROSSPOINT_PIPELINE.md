@@ -30,21 +30,29 @@ flowchart LR
 
 The arrows do not mean all three AIs write the same item. The system enforces **one producer for one logical job and date**. Moving a job from one producer to another requires disabling the prior owner so duplicate articles cannot race each other.
 
-## Modeled preview: a Spark-style Inbox V2 feed
+## Modeled preview: Cards V1 and an AI-style Inbox V2 feed
 
-The following images are lossless native `528 x 792` PNG exports from the public lab's modeled X3 canvas. All titles and article text are fictional demonstration material written for this preview. No live feed, private article, account, device, or physical E-Ink screen appears here.
+The following overview uses six direct, lossless `528 x 792` framebuffer exports from the public lab. They are doubled with nearest-neighbor scaling so browser and high-density displays do not soften the X3 pixels. The screens are not cropped from the surrounding simulator UI or pasted into a pretend physical-device photograph.
+
+<a href="images/engagement/xtinct-x3-native-showcase-2x.png"><img src="images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens covering Home, Daily Cards V1, Inbox V2, feedback, an article and a puzzle"></a>
+
+All visible content is fictional. The serial is an original 876-word demonstration with a recap and deliberate stopping point. Northstar Notes, Tideglass Relay, Maple Arc Studio, Bellwether Transit, Lantern Foldworks, Thimbleglass Instruments and every named person, event, metric and date are invented. No private content was renamed or lightly redacted.
 
 ### Default Inbox V2 card preview
 
-![Modeled native 528 by 792 X3 Inbox V2 card preview for a synthetic Spark demo item](images/inbox-v2-default-preview-528x792.png)
+<a href="images/inbox-v2-default-preview-528x792.png"><img src="images/engagement/inbox-v2-default-preview-2x-1056x1584.png" width="528" alt="High-resolution modeled Inbox V2 preview for a fictional Spark serial"></a>
 
-The normal Inbox entry flow opens this Cards-style preview. It shows one delivery at a time with its title, module, kind, summary, key points, and the Back, Actions, Open, and Next controls. The compact Browse List is a separate secondary view and is not presented here as the default Inbox.
+The normal Inbox entry flow opens this Cards-style preview. It shows one delivery at a time with its title, module, kind, summary, key points, and the Back, Actions, Open, and Next controls. The compact Browse List is a separate secondary view.
+
+### Like / dislike feedback
+
+<a href="images/inbox-v2-feedback-actions-528x792.png"><img src="images/engagement/inbox-v2-feedback-actions-2x-1056x1584.png" width="528" alt="High-resolution modeled Inbox actions menu with Like and Dislike feedback"></a>
 
 ### Opened text artifact
 
-![Modeled native 528 by 792 X3 reader with a synthetic Spark article open](images/inbox-v2-open-article-528x792.png)
+<a href="images/inbox-v2-open-article-528x792.png"><img src="images/engagement/inbox-v2-open-article-2x-1056x1584.png" width="528" alt="High-resolution modeled reader with a fictional Spark serial open"></a>
 
-**Evidence label: MODELED / SYNTHETIC.** Opening the preview uses the bounded text-reader path, while the item metadata can still expose server-allowlisted feedback such as `like` and `dislike`. The images are shown individually at their native renderer resolution instead of being enlarged from browser thumbnails. This demonstrates the interface and contract shape, not unattended production delivery or physical display quality.
+**Evidence label: MODELED / SYNTHETIC.** Opening the preview uses the bounded text-reader path, while the item metadata exposes server-allowlisted `like` and `dislike` feedback. This demonstrates the interface and contract shape, not unattended production delivery or physical display quality.
 
 ## How ChatGPT, Spark, and Grok enter the same system
 

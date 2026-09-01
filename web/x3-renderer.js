@@ -155,7 +155,9 @@ function drawX3Icon(ctx, label, x, y) {
 }
 
 function drawHome(ctx, state) {
-  drawHeader(ctx, "XTINCT", state.fixtures.batteryPercent, METRICS.homeTopPadding);
+  // Lyra's real HomeActivity passes a null title for this compact header.
+  // Drawing a title here makes the header divider cross through the text.
+  drawHeader(ctx, null, state.fixtures.batteryPercent, METRICS.homeTopPadding);
   const recent = state.fixtures.recentBooks?.[0];
   if (recent) {
     const coverX = 28;
@@ -293,20 +295,24 @@ function drawInboxList(ctx, state) {
 
 function drawActions(ctx, state) {
   drawInboxPreview(ctx, { ...state, route: "inbox" });
+  const actions = inboxActions(state);
+  const rowHeight = 48;
+  const popupHeight = 94 + actions.length * rowHeight;
+  const popupTop = Math.max(126, Math.floor((752 - popupHeight) / 2));
   ctx.fillStyle = PALETTE.paper;
-  ctx.fillRect(36, 210, 456, 370);
+  ctx.fillRect(36, popupTop, 456, popupHeight);
   ctx.strokeStyle = PALETTE.ink;
   ctx.lineWidth = 2;
-  ctx.strokeRect(36, 210, 456, 370);
+  ctx.strokeRect(36, popupTop, 456, popupHeight);
   setFont(ctx, 20, true);
-  ctx.fillText("INBOX ACTIONS", 58, 235);
-  ctx.fillRect(37, 275, 454, 2);
-  inboxActions(state).forEach((action, index) => {
-    const y = 298 + index * 62;
-    if (index === state.actionIndex) roundedRect(ctx, 54, y, 420, 50, 5, PALETTE.ink, PALETTE.ink);
+  ctx.fillText("INBOX ACTIONS", 58, popupTop + 22);
+  ctx.fillRect(37, popupTop + 62, 454, 2);
+  actions.forEach((action, index) => {
+    const y = popupTop + 72 + index * rowHeight;
+    if (index === state.actionIndex) roundedRect(ctx, 54, y, 420, 40, 5, PALETTE.ink, PALETTE.ink);
     setFont(ctx, 16);
     ctx.fillStyle = index === state.actionIndex ? PALETTE.paper : PALETTE.ink;
-    ctx.fillText(action.label, 72, y + 15);
+    ctx.fillText(action.label, 72, y + 10);
   });
 }
 

@@ -62,16 +62,40 @@ def packaging_test_root() -> Path:
 
 
 class ReleaseEngineeringTests(unittest.TestCase):
-    def test_documented_inbox_previews_are_native_x3_pngs(self) -> None:
-        preview_names = (
+    def test_documented_examples_have_native_and_sharp_presentation_pngs(self) -> None:
+        native_names = (
+            "x3-home-native-528x792.png",
+            "daily-cards-v1-project-watch-528x792.png",
             "inbox-v2-default-preview-528x792.png",
+            "inbox-v2-feedback-actions-528x792.png",
             "inbox-v2-open-article-528x792.png",
+            "inbox-v2-puzzle-preview-528x792.png",
         )
-        for name in preview_names:
+        for name in native_names:
             data = (SIMULATOR_ROOT / "docs" / "images" / name).read_bytes()
             self.assertEqual(b"\x89PNG\r\n\x1a\n", data[:8], name)
             self.assertEqual(b"IHDR", data[12:16], name)
             self.assertEqual((528, 792), struct.unpack(">II", data[16:24]), name)
+
+            doubled_name = name.replace("-528x792.png", "-2x-1056x1584.png")
+            doubled = (SIMULATOR_ROOT / "docs" / "images" / "engagement" / doubled_name).read_bytes()
+            self.assertEqual(b"\x89PNG\r\n\x1a\n", doubled[:8], doubled_name)
+            self.assertEqual((1056, 1584), struct.unpack(">II", doubled[16:24]), doubled_name)
+
+        showcase = (SIMULATOR_ROOT / "docs" / "images" / "engagement" /
+                    "xtinct-x3-native-showcase-2x.png").read_bytes()
+        self.assertEqual((3456, 3688), struct.unpack(">II", showcase[16:24]))
+
+    def test_lyra_home_header_has_no_false_title_or_divider(self) -> None:
+        renderer = (SIMULATOR_ROOT / "web" / "x3-renderer.js").read_text(encoding="utf-8")
+        self.assertIn(
+            'drawHeader(ctx, null, state.fixtures.batteryPercent, METRICS.homeTopPadding);',
+            renderer,
+        )
+        self.assertNotIn(
+            'drawHeader(ctx, "XTINCT", state.fixtures.batteryPercent, METRICS.homeTopPadding);',
+            renderer,
+        )
 
     def test_runtime_license_exception_is_exact_and_does_not_weaken_email_scanning(self) -> None:
         approved = "Julian Seward, jseward@acm.org"

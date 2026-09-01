@@ -20,6 +20,7 @@ import { X3Renderer } from "./x3-renderer.js";
 
 const canvas = document.querySelector("#x3-screen");
 const renderer = new X3Renderer(canvas);
+const nativeFrameExport = document.querySelector("#native-frame-export");
 let fixtures;
 let state;
 let contract = null;
@@ -69,46 +70,176 @@ async function json(url, options) {
 function publicDemoFixtures(raw) {
   const cardTemplates = [
     {
-      title: "Sample Project Pulse",
-      summary: "A synthetic status snapshot for checking card layout, metrics and report navigation.",
-      metrics: [{ value: "4", label: "items" }, { value: "2", label: "watch" }, { value: "Low", label: "urgency" }],
-      sections: [{ heading: "TODAY", lines: ["Review the sample milestone", "Choose one bounded next action"] }]
+      title: "Fictional Project Watch",
+      summary: "Three invented products moved this week; one bounded experiment is ready for a decision.",
+      metrics: [{ value: "3", label: "projects" }, { value: "2", label: "moving" }, { value: "1", label: "decision" }],
+      sections: [
+        { heading: "SIGNAL", lines: ["Northstar Notes finished offline search", "Tideglass Relay needs a retry test"] },
+        { heading: "ONE THING TO BUILD", lines: ["Prototype a one-tap morning brief; low cost, half a day"] }
+      ]
     },
     {
-      title: "Sample Queue Review",
-      summary: "A synthetic queue summary with no account, provider or personal message history.",
-      metrics: [{ value: "0", label: "urgent" }, { value: "3", label: "reviewed" }],
-      sections: [{ heading: "QUEUE", lines: ["No response required", "Demo follow-up remains on schedule"] }]
+      title: "Fictional Opportunity Scan",
+      summary: "A made-up studio brief separates one practical lead from two ideas that need more evidence.",
+      metrics: [{ value: "1", label: "strong fit" }, { value: "2", label: "watch" }, { value: "Low", label: "cost" }],
+      sections: [
+        { heading: "BEST LEAD", lines: ["Maple Arc Studio wants a compact E-Ink prototype", "First action: prepare a two-screen mockup"] },
+        { heading: "CADENCE", lines: ["DEMO WEEKLY - next review in seven days"] }
+      ]
     }
   ];
   const inboxTemplates = [
     {
-      moduleId: "spark-demo",
+      moduleId: "spark-serial-demo",
       kind: "text",
-      title: "Spark Demo: Designing for Four Grays",
-      summary: "A fictional Spark-style article about making calm, legible pages for a four-gray E-Ink display.",
-      points: ["Use contrast to express hierarchy", "Keep each page focused on one idea"],
+      title: "Spark Serial: The Paper City",
+      summary: "A courier enters a station where tomorrow's notices are already printing - and one bears her own name.",
+      points: ["Original fiction with a two-line recap", "Like or dislike joins the feedback queue"],
       pages: [
-        "SPARK DEMO · SYNTHETIC ARTICLE\n\nDESIGNING FOR FOUR GRAYS\n\nA four-gray screen rewards restraint. Instead of relying on color, a page can use spacing, weight and rhythm to show what matters first. A strong heading anchors the eye. A short summary establishes context. One or two supporting points give the reader somewhere useful to go next.\n\nThe interesting constraint is not the missing color. It is the slower pace. E-Ink makes every refresh feel intentional, so the interface works best when it avoids unnecessary motion and keeps each page focused on one clear idea.",
-        "A practical layout starts with the native display size. Test the longest believable title, allow breathing room around headings, and reserve the darkest tone for the information that deserves immediate attention. Middle grays can separate metadata from prose without turning the page into a patchwork.\n\nThe result should feel less like a compressed website and more like a small printed card: quiet, durable and readable in a glance.\n\nThis is fictional demonstration text. No external account or live article was used."
+        `SPARK DEMO · FICTIONAL SERIAL
+
+THE PAPER CITY
+
+RECAP
+
+Courier Mara Vale found a blank railway ticket that warmed whenever she faced east. At midnight it printed one instruction: BOARD THE TRAIN THAT ISN'T LISTED.
+
+EPISODE THREE
+
+Platform Nine had been sealed for twenty years, but the clock above its gate was keeping perfect time.
+
+Mara held the ticket against the brass lock. Somewhere behind the wall, a press began to turn: one slow revolution, a pause, then another. The gate clicked open.
+
+The platform smelled of rain and hot paper. No rails remained. In their place ran two silver grooves filled with thousands of narrow cards. Each card carried tomorrow's date and one ordinary event: a missed tram, a cracked teacup, a stranger returning a blue umbrella.
+
+At the far end, a kiosk glowed beneath the fictional crest of Bellwether Transit. Its printer was already awake.`,
+        `Mara approached the kiosk. A fresh notice slid into the tray.
+
+08:14 - MARA VALE DECLINES THE OFFER.
+
+Below it, in smaller type: THE CITY LOSES ONE HOUR.
+
+"That machine is dramatic," said a voice behind her.
+
+An old conductor stood beside the locked gate, silver braid bright against his coat. His badge read ORIN PIKE, though Bellwether Transit had never employed anyone by that name. Mara knew because she had delivered the company's archive to the museum herself.
+
+Orin lifted a stack of tomorrow cards. "Most predictions are harmless. The press notices pressure, not destiny. A crowded crossing. A promise almost broken. It prints the shape of what is likely."
+
+"And the offer?"
+
+"Mine." He pointed to a narrow carriage waiting where the rails should have been. Its windows showed different weather in every pane. "Help me stop the press before sunrise."
+
+Mara read the notice again. The letters were fading, as if the future had begun reconsidering itself.`,
+        `Inside the carriage, the seats were filing cabinets and the ceiling was paper sky. Orin opened the first drawer. It contained one card for every person in the city.
+
+"Bellwether built the press to plan timetables," he said. "Then it learned that people are easier to schedule than trains. The company buried it. The press kept printing."
+
+Mara found her own drawer. It was empty except for the warm ticket.
+
+The carriage shuddered. In the silver grooves, tomorrow cards began racing toward a black slot beneath the clock. Each card that vanished made the minute hand jump backward.
+
+08:13.
+
+08:12.
+
+The city above them was losing its morning before it arrived.
+
+Orin offered her a red lever. "Pull this and the press forgets every prediction. Leave it, and we can choose which ones come true."
+
+Mara put her hand on the lever.
+
+The kiosk printed one final notice.
+
+MARA VALE PULLS THE LEVER.
+
+Then, beneath it, a second line appeared in ink so fresh it shone:
+
+ORIN PIKE HAS LIED ABOUT THE TRAIN.
+
+Mara released the lever.
+
+Orin did not reach for it. Instead he sat on the nearest cabinet and watched the minute hand jump to 08:10.
+
+"The train is not here to stop the press," Mara said.
+
+"No."
+
+"It carries the predictions away."
+
+Orin nodded. Each night the carriage collected the cards and delivered them to Bellwether's sealed planning room. Every morning, executives had opened the drawers and chosen which delays, shortages and lucky accidents would be allowed to happen. The system had made the city efficient. It had also made it obedient.
+
+"I drove the last train," he said. "Then I realised the press had printed my rebellion before I chose it. I never learned whether the choice was mine."
+
+The carriage doors locked. A bell rang once.
+
+From the final cabinet came a soft knocking. Not mechanical. Human.
+
+Mara pulled the drawer open. A girl of perhaps twelve crouched inside, holding a roll of blank paper. Her coat bore the crest of a company Mara had never heard of: LANTERN FOLDWORKS.
+
+"You're late," the girl said. "Bellwether is only the first city."
+
+Outside, the silver grooves changed direction. Thousands of tomorrow cards streamed back out of the black slot, blank side up.`,
+        `The blank cards climbed the platform pillars like pale leaves. Wherever one touched stone, a new sentence appeared.
+
+THE MAYOR FORGETS THE RIVER.
+
+THE EASTERN BRIDGE OPENS INTO A FIELD.
+
+MARA VALE REMEMBERS A DAY THAT NEVER HAPPENED.
+
+The girl handed Mara the roll. It was a map printed on both sides. One showed the city above them. The other showed nine more cities connected by lines that did not follow any coast or border.
+
+"Lantern Foldworks built the paper," she said. "Bellwether only taught it to predict."
+
+08:07.
+
+Mara could pull the red lever and erase the press, but the map suggested the other presses would continue. She could board the carriage and follow the network, but every minute spent below would be stolen from the city above.
+
+Orin stood beside the open door. For the first time, he looked afraid.
+
+The kiosk printed two tickets. One was marked SURFACE. The other was marked NEXT CITY.
+
+Both carried Mara's name.
+
+STOPPING POINT
+
+Mara takes one ticket while the clock reaches 08:06. The episode ends before revealing which one.
+
+All people, companies and events in this demonstration are fictional.`
       ]
     },
     {
-      moduleId: "spark-demo",
+      moduleId: "reader-genome-demo",
       kind: "text",
-      title: "Spark Demo: A Library for One Quiet Morning",
-      summary: "A synthetic reading essay showing how a longer generated article could appear in Inbox V2.",
-      points: ["Three short pieces beat an endless feed", "Offline reading protects attention"],
+      title: "Reader Genome: The Quiet Factory",
+      summary: "A fictional design essay asks what changes when a workshop treats silence as a measurable output.",
+      points: ["A made-up company anchors the case study", "The structure mirrors a long-form daily article"],
       pages: [
-        "SPARK DEMO · SYNTHETIC ARTICLE\n\nA LIBRARY FOR ONE QUIET MORNING\n\nImagine opening a reader that has already chosen a small morning library: one useful technical note, one piece of fiction and one puzzle page. There is no infinite scroll and no pressure to catch up. The collection is deliberately finite.\n\nEach item arrives as a verified local artifact, so the reader can open it again after the network disappears. The value comes from selection, not volume.",
-        "A once-a-day device can be opinionated about limits. It can keep yesterday's verified edition when today's refresh fails, distinguish unread material from retained favorites, and let simple feedback improve tomorrow's selection.\n\nThis sample is fictional and contains no private reading history."
+        `READER GENOME DEMO · FICTIONAL CASE STUDY
+
+THE QUIET FACTORY
+
+At the imaginary Thimbleglass Instruments workshop, every machine has two production targets. The first is familiar: parts per hour. The second is stranger: minutes of comfortable conversation preserved on the factory floor.
+
+The company began measuring silence after a prototype maker noticed that the loudest bench produced the most rework. Nothing was wrong with the tools. The problem was that operators stopped asking each other small questions when speaking became tiring.
+
+Thimbleglass moved compressors behind a dense service wall, replaced alert beeps with low-frequency light cues, and gave each noisy process a short acoustic signature instead of a constant drone. Output rose only slightly. Mistakes fell sharply.`,
+        `The interesting lesson is not that every workshop should become silent. It is that secondary effects deserve a place in the design brief.
+
+A fast machine may slow the team around it. A bright dashboard may hide the one warning that matters. A feature that saves ten seconds can create an hour of background attention.
+
+The fictional workshop used a simple review question: what human behaviour does this tool make easier, and what behaviour does it quietly suppress? That question changed equipment placement, maintenance schedules and even the wording of work orders.
+
+For a small E-Ink reader, the parallel is useful. The absence of animation is not merely a limitation. It creates a calmer rhythm in which one well-chosen page can feel complete.
+
+All organisations, measurements and people in this demonstration are invented; the article structure is representative of the implemented long-form feed.`
       ]
     },
     {
-      moduleId: "spark-demo",
+      moduleId: "daily-puzzle-demo",
       kind: "text",
-      title: "Spark Demo: Pocket Puzzle Page",
-      summary: "A source-free synthetic puzzle page designed for a brief offline break.",
+      title: "Spark Puzzle: The Lighthouse Page",
+      summary: "Three original demonstration puzzles designed for a short, offline morning break.",
       points: ["One logic puzzle and one word puzzle", "Hints and answers stay in the same artifact"],
       pages: [
         "SPARK DEMO · SYNTHETIC PUZZLES\n\nPOCKET PUZZLE PAGE\n\nLOGIC\nThree boxes are all labelled incorrectly: APPLES, PEARS and MIXED. You may draw one fruit from one box. Which box should you choose to identify all three?\n\nWORDS\nChange COLD to WARM one letter at a time. Every step must remain a four-letter English word.\n\nMove to the next page only when you want the hints.",
@@ -122,8 +253,8 @@ function publicDemoFixtures(raw) {
     timezone: "UTC",
     batteryPercent: Number.isFinite(raw?.batteryPercent) ? raw.batteryPercent : 83,
     recentBooks: [{
-      title: "Sample Daily Digest",
-      author: "Demo source",
+      title: "Fictional Morning Edition",
+      author: "Synthetic source",
       kind: "epub",
       spines: [[
         "Welcome to the offline X3 Preview Lab. This edition contains synthetic content only.",
@@ -156,6 +287,7 @@ function publicDemoFixtures(raw) {
         createdAt: "2026-01-15T08:00:00Z",
         state: "pending",
         digest: { schema: "xtinct.inbox-digest/v1", summary: template.summary, points: template.points },
+        actions: ["like", "dislike"],
         pages: Array.isArray(template.pages) ? template.pages : undefined
       };
     })
@@ -396,6 +528,8 @@ function clearNetworkOverrides() {
 
 function paint() {
   renderer.render(state);
+  nativeFrameExport.src = canvas.toDataURL("image/png");
+  nativeFrameExport.dataset.route = state.route;
   renderInspector();
   const flash = document.querySelector("#refresh-flash");
   flash.classList.remove("flash");
