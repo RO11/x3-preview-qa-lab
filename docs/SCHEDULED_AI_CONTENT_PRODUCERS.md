@@ -186,8 +186,100 @@ Common limits:
 
 ## Copy-ready scheduled content prompts
 
-Combine the common fence, exactly one block below, and exactly one provider
-adapter. The subjects and job IDs are part of the contract.
+For an Inbox V2 job, combine the common fence, exactly one Inbox block below,
+and exactly one provider adapter. The Market Briefing is a Cards V1 job, so its
+block includes its own Sheet handoff and must not use an Inbox email, draft, or
+write-only MCP adapter. Subjects, task IDs, ranges, and job IDs are part of the
+contract.
+
+### Market Briefing (Cards V1)
+
+- Suggested task name: XTINCT — MARKET BRIEFING
+- Worker task ID: market-briefing
+- Cadence: Monday-Saturday at 03:00 Australia/Brisbane
+- Owned handoff: Cards!D4:F4 only
+- Expiry: 72 hours after generated_at
+- Assembly: common scheduled-task fence plus the block below; no Inbox adapter
+
+~~~text
+Create one complete, source-backed Market Briefing for a small once-a-day
+e-ink reader. Research the latest completed market session, the current market
+state, material overnight developments, the next known catalysts, and the
+clearest risks. On a holiday or closed-market day, identify the latest
+completed session and never describe an old quote as live.
+
+When the official Interactive Brokers app is connected and authorised, use it
+strictly as a read-only evidence source. Never submit, preview, stage, modify,
+cancel, or recommend an order. Never call a trading tool. Reconcile each quote
+with its timestamp and market state before using it. If portfolio evidence is
+available, analyse it in memory and output only the instrument label needed for
+a compact HOLD, WATCH, or REVIEW decision lens. Do not output account names or
+numbers, order IDs, quantities, cost basis, realised or unrealised P&L, cash,
+buying power, margin, total portfolio value, raw connector output, or hidden
+reasoning. If the operator configuration forbids holding names, use stable
+public-safe aliases instead.
+
+Use current primary or official public sources for market-wide claims and one
+independent corroborating source when a claim materially affects the briefing.
+Do not invent a quote, percentage, event, source, URL, holding, or catalyst.
+If required evidence, quote freshness, JSON validation, or the Sheet write
+cannot be completed, publish nothing and leave the previous complete card
+unchanged.
+
+Prepare exactly one JSON object matching this shape, replacing every
+placeholder. Serialize valid minified JSON before delivery:
+
+{
+  "task_id": "market-briefing",
+  "run_id": "market-briefing/YYYY-MM-DDTHH:mm:ss+LOCAL_OFFSET",
+  "generated_at": "YYYY-MM-DDTHH:mm:ss+LOCAL_OFFSET",
+  "expires_at": "EXACTLY_72_HOURS_AFTER_GENERATED_AT",
+  "title": "Market Briefing",
+  "summary": "CADENCE: MON-SAT / 03:00 — one current, evidence-backed summary",
+  "priority": 2,
+  "state": "ok",
+  "metrics": [
+    {"label": "CADENCE", "value": "MON-SAT / 03:00", "tone": "neutral"},
+    {"label": "MARKET", "value": "one bounded current signal", "tone": "neutral"},
+    {"label": "RISK", "value": "one bounded risk signal", "tone": "warning"}
+  ],
+  "sections": [
+    {"heading": "OVERNIGHT", "lines": ["one to four compact verified lines"]},
+    {"heading": "PORTFOLIO LENS", "lines": ["one to four privacy-bounded lines"]},
+    {"heading": "WATCH", "lines": ["one to four next-catalyst lines"]}
+  ],
+  "actions": [],
+  "body": "complete renderer-safe plain-text report",
+  "source_url": null,
+  "image_url": null
+}
+
+The title is at most 80 UTF-8 bytes. The summary is at most 320 UTF-8 bytes and
+starts exactly with CADENCE: MON-SAT / 03:00 — . Use one to four metrics; the
+CADENCE metric is first. Use no more than three sections, four lines per
+section, 48 UTF-8 bytes per heading, and 240 UTF-8 bytes per line. Keep actions
+empty. The body is complete plain text below 24,576 UTF-8 bytes with no NUL,
+HTML, Markdown table, or code fence.
+
+Write a substantive 500-1,200-word body. Its first visible line is the title,
+and it uses MARKET SNAPSHOT, PORTFOLIO LENS, CATALYSTS, RISKS, NEXT CHECK, and
+SOURCE NOTES exactly once and in that order. Put DATE and
+CADENCE: MON-SAT / 03:00 near the top. Identify delayed or closed-market data
+plainly. End with the exact sentence: No trades placed or modified.
+
+After the complete payload passes every content, freshness, privacy, byte, and
+JSON check, set run_id to the payload run_id and minify the JSON without
+changing it. Make exactly one RAW Google Sheets update to
+<PRIVATE_CARDS_SHEET>, range Cards!D4:F4, with this single row:
+
+[run_id, minified_payload_json, run_id]
+
+Do not write another cell or range, do not append, do not email the card, and
+do not mirror it into Inbox V2 or Today. Read Cards!D4:F4 once after the write.
+Call the handoff verified only when all three cells match exactly, both outer
+run IDs equal the payload run_id, and the middle cell is byte-for-byte the
+prepared minified JSON. Never retry an ambiguous or failed write.
+~~~
 
 ### E-Ink Serial
 

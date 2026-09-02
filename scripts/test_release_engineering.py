@@ -153,6 +153,28 @@ class ReleaseEngineeringTests(unittest.TestCase):
         self.assertIn("### Inbox V2 flow", guide)
         self.assertIn("prevents the same result being duplicated into both feeds", guide)
 
+    def test_public_prompts_include_copy_ready_market_briefing(self) -> None:
+        prompts = (
+            SIMULATOR_ROOT / "docs" / "SCHEDULED_AI_CONTENT_PRODUCERS.md"
+        ).read_text(encoding="utf-8")
+        for required in (
+            "### Market Briefing (Cards V1)",
+            "Worker task ID: market-briefing",
+            "Cards!D4:F4 only",
+            '"task_id": "market-briefing"',
+            '"actions": []',
+            "No trades placed or modified.",
+            "Never retry an ambiguous or failed write.",
+            "do not mirror it into Inbox V2 or Today",
+        ):
+            self.assertIn(required, prompts)
+        self.assertNotIn("<PRIVATE_CARDS_SHEET_ID>", prompts)
+        readme = (SIMULATOR_ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn(
+            "SCHEDULED_AI_CONTENT_PRODUCERS.md#market-briefing-cards-v1",
+            readme,
+        )
+
     def test_lyra_home_header_has_no_false_title_or_divider(self) -> None:
         renderer = (SIMULATOR_ROOT / "web" / "x3-renderer.js").read_text(encoding="utf-8")
         self.assertIn(

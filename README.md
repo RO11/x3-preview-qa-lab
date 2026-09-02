@@ -8,7 +8,8 @@ For a public-safe overview of the experimental CrossPoint content modifications 
 
 For the sanitized, copy-ready prompts and the exact distinction between a
 scheduled ChatGPT/Codex task, a Spark draft relay, and a Grok write-only MCP
-adapter, read [Scheduled AI content producers](docs/SCHEDULED_AI_CONTENT_PRODUCERS.md).
+adapter—including the complete Cards V1 Market Briefing prompt and atomic Sheet
+handoff—read [Scheduled AI content producers](docs/SCHEDULED_AI_CONTENT_PRODUCERS.md).
 
 The prepared Reddit launch post and its CAPTCHA-blocked resume procedure are preserved in [the dated Reddit post handoff](docs/REDDIT_POST_HANDOFF_2026-09-02.md).
 
@@ -26,6 +27,8 @@ Every visible company, ticker, price, holding, opportunity, project, measurement
 <a href="docs/images/daily-cards-v1-market-briefing-report-528x792.png"><img src="docs/images/engagement/daily-cards-v1-market-briefing-report-2x-1056x1584.png" width="500" alt="Sharp modeled X3 reader showing the opened fictional market report with overnight context, a three-holding portfolio lens and no-trade boundary"></a>
 
 The first screen is the glanceable V1 card; the second is the report it opens. The production pattern is **a scheduled ChatGPT task using the official Interactive Brokers app for read-only evidence**, followed by a bounded V1 handoff. The public lab has no broker connection, contains no real portfolio data and cannot place or modify a trade. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#chatgpt) explains how to reproduce the analysis-only path without exposing account or order identifiers.
+
+The complete [copy-ready Market Briefing scheduled-task prompt](docs/SCHEDULED_AI_CONTENT_PRODUCERS.md#market-briefing-cards-v1) includes its Cards V1 JSON envelope, privacy exclusions, quote-freshness rules, report headings, exact **Cards!D4:F4** atomic handoff, and readback check. It contains placeholders only—no real holdings, account values, names, endpoints, or credentials.
 
 ### Practical Inbox V2 artifacts
 
