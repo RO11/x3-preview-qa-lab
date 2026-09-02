@@ -54,19 +54,26 @@ The arrows do not mean all three AIs write the same item. The system enforces **
 
 The following overview uses six direct, lossless `528 x 792` framebuffer exports from the public lab. The Daily Cards screen is a fictional market briefing whose on-screen producer path identifies the ChatGPT + Interactive Brokers app pattern. The frames are doubled with nearest-neighbor scaling so browser and high-density displays do not soften the X3 pixels. They are not cropped from the surrounding simulator UI or pasted into a pretend physical-device photograph.
 
-<a href="images/engagement/xtinct-x3-native-showcase-2x.png"><img src="images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens covering Home, Daily Cards V1, Inbox V2, feedback, an article and a puzzle"></a>
+<a href="images/engagement/xtinct-x3-native-showcase-2x.png"><img src="images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens showing a market card and opened report, Project Watchlist, Business Opportunities, Hardware Research and Reader Genome"></a>
 
-All visible content is fictional. The serial is an original 876-word demonstration with a recap and deliberate stopping point. Meridian 50, Copperline, Glasswing Energy, Harbor Bond, Northstar Notes, Tideglass Relay, Maple Arc Studio, Bellwether Transit, Lantern Foldworks, Thimbleglass Instruments and every named person, ticker, price, event, metric and date are invented. No private content was renamed or lightly redacted.
+The walkthrough leads with the useful scheduled output rather than the novelty modules. It shows the complete market report behind its V1 digest, followed by four opened V2 artifacts used for project, opportunity, hardware and reading decisions. Meridian 50, Copperline, Glasswing Energy, Northstar Compute, Harbor Grid, Tideglass Health, Northstar Notes, Harbor Relay, Glasswing Planner, Maple Arc Studio, Tideglass Museum, Lantern Health, PaperCore C3, Thimbleglass Instruments and every named person, ticker, price, event, metric and date are invented. No private content was renamed or lightly redacted.
 
 ### Implemented module map
 
 <a href="images/engagement/xtinct-implemented-content-map-2400x1740.png"><img src="images/engagement/xtinct-implemented-content-map-2400x1740.png" width="1200" alt="High-resolution sanitized map of the implemented Daily Cards V1, Inbox V2, Today and system modules"></a>
 
+### Market card and opened report
+
+<a href="images/daily-cards-v1-market-briefing-528x792.png"><img src="images/engagement/daily-cards-v1-market-briefing-2x-1056x1584.png" width="500" alt="Fictional market summary in Daily Cards V1"></a>
+<a href="images/daily-cards-v1-market-briefing-report-528x792.png"><img src="images/engagement/daily-cards-v1-market-briefing-report-2x-1056x1584.png" width="500" alt="Opened fictional market report with overnight context and portfolio decisions"></a>
+
+V1 is not limited to the digest screen. Open loads the revision-bound report whose byte count and SHA-256 were validated before promotion. The public example includes overnight context, a fictional three-holding decision lens, catalysts, risks and a no-trade boundary.
+
 ### Default Inbox V2 card preview
 
-<a href="images/inbox-v2-default-preview-528x792.png"><img src="images/engagement/inbox-v2-default-preview-2x-1056x1584.png" width="528" alt="High-resolution modeled Inbox V2 preview for a fictional Spark serial"></a>
+<a href="images/inbox-v2-default-preview-528x792.png"><img src="images/engagement/inbox-v2-default-preview-2x-1056x1584.png" width="528" alt="High-resolution modeled Inbox V2 preview for the fictional weekly Project Watchlist"></a>
 
-The normal Inbox entry flow opens this Cards-style preview. It shows one delivery at a time with its title, module, kind, summary, key points, and the Back, Actions, Open, and Next controls. The compact Browse List is a separate secondary view.
+The normal Inbox entry flow opens this Cards-style preview. The public demo now leads with the practical Project Watchlist and then Business Opportunities, Hardware Research and Reader Genome; fiction and puzzles remain later in the queue. Each preview shows one delivery with its title, module, kind, summary, key points, and the Back, Actions, Open, and Next controls. The compact Browse List is a separate secondary view.
 
 ### Like / dislike feedback
 

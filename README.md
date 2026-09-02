@@ -12,19 +12,29 @@ adapter, read [Scheduled AI content producers](docs/SCHEDULED_AI_CONTENT_PRODUCE
 
 The prepared Reddit launch post and its CAPTCHA-blocked resume procedure are preserved in [the dated Reddit post handoff](docs/REDDIT_POST_HANDOFF_2026-09-02.md).
 
-## Modeled native X3 walkthrough
+## Modeled useful-content walkthrough
 
-<a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens: Home, a fictional stock-market Daily Card, Inbox V2, Like and Dislike actions, an opened fictional article, and a daily puzzle"></a>
+<a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six sharp modeled X3 screens showing a market summary, its opened full report, a weekly project watchlist, ranked business leads, a hardware research verdict and a Reader Genome article"></a>
 
-This `3456 x 3688` overview is assembled from six exact `528 x 792` modeled framebuffers. Each screen is doubled with nearest-neighbor scaling for sharp browser presentation; no interpolated detail is invented. Click the image for the full-resolution version. The compact Browse List remains a separate secondary Inbox view.
+This `3456 x 3688` overview is assembled from six exact `528 x 792` modeled framebuffers. Each screen is doubled with nearest-neighbor scaling for sharp browser presentation; no interpolated detail is invented. It leads with the practical once-a-day material: market context, portfolio decisions, project changes, ranked opportunities, hardware go/no-go research and one selected long-form article. Fiction and puzzles remain available as secondary Inbox examples rather than the headline.
 
-The content is deliberately interesting but entirely fictional. The serial is an original 876-word episode with a recap and stopping point; the project names, companies, tickers, prices, people, opportunities, measurements, dates and events are invented. No private article, brokerage account, holding, reading history or production feed was adapted or copied.
+Every visible company, ticker, price, holding, opportunity, project, measurement, date and event is invented. The examples mirror the implemented information shapes but were written from scratch for the public demo. No private article, brokerage account, reading history or production feed was renamed or adapted.
 
-### Fictional Market Briefing in Daily Cards V1
+### Market Briefing: summary and actual report
 
-<a href="docs/images/daily-cards-v1-market-briefing-528x792.png"><img src="docs/images/engagement/daily-cards-v1-market-briefing-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Daily Cards V1 market briefing with fictional prices and a visible ChatGPT plus Interactive Brokers app producer path"></a>
+<a href="docs/images/daily-cards-v1-market-briefing-528x792.png"><img src="docs/images/engagement/daily-cards-v1-market-briefing-2x-1056x1584.png" width="500" alt="Sharp modeled X3 Daily Cards V1 market summary with fictional prices and the ChatGPT plus Interactive Brokers app producer path"></a>
+<a href="docs/images/daily-cards-v1-market-briefing-report-528x792.png"><img src="docs/images/engagement/daily-cards-v1-market-briefing-report-2x-1056x1584.png" width="500" alt="Sharp modeled X3 reader showing the opened fictional market report with overnight context, a three-holding portfolio lens and no-trade boundary"></a>
 
-The market card shows the real producer pattern—**ChatGPT + the official Interactive Brokers app**—while every displayed market name and value remains invented. The public lab does not connect to a broker, does not include portfolio data, and cannot place a trade. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#chatgpt) explains how to reproduce the read-only analysis and bounded V1 handoff without exposing account or order identifiers.
+The first screen is the glanceable V1 card; the second is the report it opens. The production pattern is **a scheduled ChatGPT task using the official Interactive Brokers app for read-only evidence**, followed by a bounded V1 handoff. The public lab has no broker connection, contains no real portfolio data and cannot place or modify a trade. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#chatgpt) explains how to reproduce the analysis-only path without exposing account or order identifiers.
+
+### Practical Inbox V2 artifacts
+
+<a href="docs/images/inbox-v2-project-watchlist-open-528x792.png"><img src="docs/images/engagement/inbox-v2-project-watchlist-open-2x-1056x1584.png" width="250" alt="Opened fictional weekly project watchlist"></a>
+<a href="docs/images/inbox-v2-business-opportunity-open-528x792.png"><img src="docs/images/engagement/inbox-v2-business-opportunity-open-2x-1056x1584.png" width="250" alt="Opened fictional ranked business-opportunity brief"></a>
+<a href="docs/images/inbox-v2-hardware-research-open-528x792.png"><img src="docs/images/engagement/inbox-v2-hardware-research-open-2x-1056x1584.png" width="250" alt="Opened fictional hardware compatibility and resource-budget verdict"></a>
+<a href="docs/images/inbox-v2-reader-genome-open-528x792.png"><img src="docs/images/engagement/inbox-v2-reader-genome-open-2x-1056x1584.png" width="250" alt="Opened fictional Reader Genome design article"></a>
+
+These are opened V2 artifacts, not summaries masquerading as articles. Project Watchlist separates observed changes from unknowns and proposes one costed next feature. Business Opportunities ranks leads without applying. Hardware Research turns claims, resource limits and recovery evidence into a verdict. Reader Genome supplies selected long-form reading. Each remains independently cached, actionable and deletable.
 
 ### Implemented content map
 
@@ -32,17 +42,7 @@ The market card shows the real producer pattern—**ChatGPT + the official Inter
 
 V1 and V2 are separate on purpose. Daily Cards V1 is a fixed four-card dashboard for market, opportunity, weekly 3D-job and attention status. Inbox V2 carries longer immutable articles, fiction, puzzles, project briefs, opportunity research, hardware research and city guides with per-item actions and receipts. Today/Radar is a separate daily EPUB spine for calendar, deadlines, plans, commitments, proof, learning and diagnostics.
 
-### Default Inbox V2 preview
-
-<a href="docs/images/inbox-v2-default-preview-528x792.png"><img src="docs/images/engagement/inbox-v2-default-preview-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Inbox V2 preview for the fictional Spark serial The Paper City"></a>
-
-### Like / dislike feedback
-
-<a href="docs/images/inbox-v2-feedback-actions-528x792.png"><img src="docs/images/engagement/inbox-v2-feedback-actions-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 Inbox actions menu with Like selected and Dislike available"></a>
-
-### Opened fictional article
-
-<a href="docs/images/inbox-v2-open-article-528x792.png"><img src="docs/images/engagement/inbox-v2-open-article-2x-1056x1584.png" width="528" alt="High-resolution modeled X3 reader showing the fictional Spark serial The Paper City"></a>
+The default Inbox preview now opens on the Project Watchlist rather than fiction. Like/Dislike remains implemented for Reader Genome, serial and puzzle items; research modules use Keep/Archive/Open on phone.
 
 **Evidence label: MODELED / SYNTHETIC.** These are direct framebuffer exports, not cropped browser screenshots, device mockups or photographs of physical E-Ink hardware. The [architecture guide](docs/AI_FED_CROSSPOINT_PIPELINE.md#implemented-content-modules) catalogs content modules already implemented in the compatible XTINCT system.
 

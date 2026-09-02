@@ -16,13 +16,23 @@ INK = "#151713"
 MUTED = "#5b5d56"
 
 EXAMPLES = (
-    ("HOME", "x3-home-native-528x792.png"),
-    ("MARKET · CARDS V1", "daily-cards-v1-market-briefing-528x792.png"),
-    ("INBOX V2", "inbox-v2-default-preview-528x792.png"),
-    ("LIKE / DISLIKE", "inbox-v2-feedback-actions-528x792.png"),
-    ("OPEN ARTICLE", "inbox-v2-open-article-528x792.png"),
-    ("DAILY PUZZLE", "inbox-v2-puzzle-preview-528x792.png"),
+    ("MARKET · V1 SUMMARY", "daily-cards-v1-market-briefing-528x792.png"),
+    ("OPENED MARKET REPORT", "daily-cards-v1-market-briefing-report-528x792.png"),
+    ("PROJECT WATCHLIST", "inbox-v2-project-watchlist-open-528x792.png"),
+    ("BUSINESS LEADS", "inbox-v2-business-opportunity-open-528x792.png"),
+    ("HARDWARE RESEARCH", "inbox-v2-hardware-research-open-528x792.png"),
+    ("READER GENOME", "inbox-v2-reader-genome-open-528x792.png"),
 )
+
+PRESENTATION_FILES = tuple(dict.fromkeys((
+    *(name for _label, name in EXAMPLES),
+    "x3-home-native-528x792.png",
+    "inbox-v2-default-preview-528x792.png",
+    "inbox-v2-feedback-actions-528x792.png",
+    "inbox-v2-open-article-528x792.png",
+    "inbox-v2-puzzle-preview-528x792.png",
+    "inbox-v2-project-watchlist-preview-528x792.png",
+)))
 
 CONTENT_COLUMNS = (
     (
@@ -133,8 +143,8 @@ def build_content_map() -> Path:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    doubled: list[tuple[str, str, Image.Image]] = []
-    for label, name in EXAMPLES:
+    presentations: dict[str, tuple[str, Image.Image]] = {}
+    for name in PRESENTATION_FILES:
         native = load_native(name)
         presentation = native.resize(
             (NATIVE_SIZE[0] * SCALE, NATIVE_SIZE[1] * SCALE),
@@ -142,7 +152,11 @@ def main() -> None:
         )
         output_name = name.replace("-528x792.png", "-2x-1056x1584.png")
         presentation.save(OUT / output_name, optimize=True)
-        doubled.append((label, output_name, presentation))
+        presentations[name] = (output_name, presentation)
+    doubled = [
+        (label, presentations[name][0], presentations[name][1])
+        for label, name in EXAMPLES
+    ]
 
     gutter = 72
     title_height = 170
@@ -155,10 +169,10 @@ def main() -> None:
     height = title_height + cell_height * 2 + row_gap + footer_height
     sheet = Image.new("RGB", (width, height), PAPER)
     draw = ImageDraw.Draw(sheet)
-    draw.text((gutter, 42), "XTINCT X3 — MODELED NATIVE SCREENS", fill=INK, font=font(68, bold=True))
+    draw.text((gutter, 42), "XTINCT X3 — USEFUL CONTENT, OPENED", fill=INK, font=font(68, bold=True))
     draw.text(
         (gutter, 116),
-        "Fictional content · exact 528 × 792 frames · 2× nearest-neighbor presentation",
+        "Scheduled fictional briefings · exact 528 × 792 frames · sharp 2× presentation",
         fill=MUTED,
         font=font(32),
     )
@@ -183,7 +197,7 @@ def main() -> None:
     sheet.save(output, optimize=True)
     content_map = build_content_map()
     print(
-        f"Wrote {len(doubled)} 2x frames, {output.name} ({sheet.size[0]} x {sheet.size[1]}) "
+        f"Wrote {len(presentations)} 2x frames, {output.name} ({sheet.size[0]} x {sheet.size[1]}) "
         f"and {content_map.name}"
     )
 

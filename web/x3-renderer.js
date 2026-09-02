@@ -60,6 +60,22 @@ function wrappedLines(ctx, text, width, maximum) {
   return lines;
 }
 
+function wrappedReaderLines(ctx, text, width) {
+  const output = [];
+  const sourceLines = String(text ?? "").replace(/\r\n?/g, "\n").split("\n");
+  for (const sourceLine of sourceLines) {
+    const value = sourceLine.trim();
+    if (!value) {
+      if (output.length && !output.at(-1).blank) output.push({ text: "", blank: true, heading: false });
+      continue;
+    }
+    const heading = value.length <= 42 && /^[A-Z0-9][A-Z0-9 &+:/·.–—'()-]+$/.test(value);
+    const chunks = wrappedLines(ctx, value, width, 100);
+    chunks.forEach(chunk => output.push({ text: chunk, blank: false, heading }));
+  }
+  return output;
+}
+
 function drawCenteredWrapped(ctx, text, x, y, width, lineHeight, maximum, size, bold = false) {
   setFont(ctx, size, bold);
   const lines = wrappedLines(ctx, text, width, maximum);
@@ -321,8 +337,23 @@ function drawReaderBody(ctx, state, body, footer) {
   setFont(ctx, 12, false, true);
   ctx.fillText("VERIFIED LOCAL CONTENT", 20, 112);
   setFont(ctx, 15, false);
-  const lines = wrappedLines(ctx, body || "The selected local document is empty.", 488, 21);
-  lines.forEach((line, index) => ctx.fillText(clipText(ctx, line, 488), 20, 150 + index * 25));
+  const lines = wrappedReaderLines(ctx, body || "The selected local document is empty.", 488);
+  let y = 150;
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (line.blank) {
+      y += 12;
+      continue;
+    }
+    if (y > 680) {
+      setFont(ctx, 15, false);
+      ctx.fillText("…", 20, 680);
+      break;
+    }
+    setFont(ctx, line.heading ? 14 : 15, line.heading);
+    ctx.fillText(clipText(ctx, line.text, 488), 20, y);
+    y += line.heading ? 24 : 25;
+  }
   ctx.fillStyle = PALETTE.light;
   ctx.fillRect(20, 716, 488, 2);
   setFont(ctx, 10, false, true);

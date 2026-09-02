@@ -68,10 +68,16 @@ class ReleaseEngineeringTests(unittest.TestCase):
         native_names = (
             "x3-home-native-528x792.png",
             "daily-cards-v1-market-briefing-528x792.png",
+            "daily-cards-v1-market-briefing-report-528x792.png",
             "inbox-v2-default-preview-528x792.png",
             "inbox-v2-feedback-actions-528x792.png",
             "inbox-v2-open-article-528x792.png",
             "inbox-v2-puzzle-preview-528x792.png",
+            "inbox-v2-project-watchlist-preview-528x792.png",
+            "inbox-v2-project-watchlist-open-528x792.png",
+            "inbox-v2-business-opportunity-open-528x792.png",
+            "inbox-v2-hardware-research-open-528x792.png",
+            "inbox-v2-reader-genome-open-528x792.png",
         )
         native_palette = {
             (0, 0, 0),
@@ -131,6 +137,14 @@ class ReleaseEngineeringTests(unittest.TestCase):
             self.assertIn(f'moduleId: "{module_id}"', app)
         self.assertIn("ChatGPT + Interactive Brokers app pattern", app)
         self.assertIn("Fictional values; read-only; no trades", app)
+        self.assertIn("FICTIONAL MARKET BRIEFING", app)
+        order_start = app.index("const practicalInboxOrder")
+        order_end = app.index("];", order_start)
+        order_block = app[order_start:order_end]
+        self.assertLess(
+            order_block.index('"project-watchlist-demo"'),
+            order_block.index('"spark-serial-demo"'),
+        )
 
         guide = (SIMULATOR_ROOT / "docs" / "AI_FED_CROSSPOINT_PIPELINE.md").read_text(
             encoding="utf-8"

@@ -83,6 +83,41 @@ function publicDemoFixtures(raw) {
         { heading: "WATCH", lines: ["Harbor Bond yield held at an invented 3.2%"] },
         { heading: "PRODUCER PATH", lines: ["ChatGPT + Interactive Brokers app pattern", "Fictional values; read-only; no trades"] }
       ],
+      pages: [
+        `FICTIONAL MARKET BRIEFING
+
+TUE 02 SEP · MON-SAT / 03:00
+
+OVERNIGHT
+Meridian 50 +0.4%. Glasswing Energy led after an invented grid-storage contract.
+
+Copperline Metals -0.7% as the fictional ore basket cooled after four stronger sessions.
+
+PORTFOLIO LENS
+Northstar Compute — HOLD. Momentum is positive, but valuation leaves little margin for error.
+
+Harbor Grid — WATCH. A breakout still needs volume confirmation.
+
+Tideglass Health — REVIEW. Its imaginary trial date is the next decision point.
+
+DEMO DATA ONLY · NO TRADES`,
+        `CATALYSTS
+
+10:00 — Meridian manufacturing survey
+12:30 — fictional central-bank remarks
+After close — Northstar Compute update
+
+RISKS
+An energy-led index can hide weak breadth. Copperline's reversal may matter if it persists for two more sessions.
+
+ONE DECISION
+Do nothing at the open. Recheck Harbor Grid only if volume exceeds its invented 20-day average.
+
+SOURCE PATH
+Scheduled ChatGPT task + Interactive Brokers app pattern. Read-only analysis; no order creation or modification.
+
+Every company, price, event and holding shown here is invented.`
+      ],
       hasReport: true
     },
     {
@@ -295,34 +330,34 @@ All organisations, measurements and people in this demonstration are invented; t
     {
       moduleId: "project-watchlist-demo",
       kind: "text",
-      title: "Project Watch: Northstar Notes",
-      summary: "A fictional project brief separates observed progress from unknowns and proposes one bounded experiment.",
-      points: ["Observed, unknown and proposed stay separate", "Cost, effort and first action are visible"],
+      title: "Project Watch: Weekly Build Radar",
+      summary: "Three fictional active projects are condensed into changes, unknowns and one bounded thing to build next.",
+      points: ["Weekly progress and open evidence gaps", "Cost, effort and first action stay visible"],
       actions: ["keep", "archive", "open-phone"],
       pages: [
-        "PROJECT WATCHLIST DEMO\n\nNORTHSTAR NOTES\n\nOBSERVED\nOffline search now handles an invented 2,400-note library. The demo build passes its local index checks.\n\nUNKNOWN\nBattery impact on a physical reader has not been measured.\n\nONE THING TO BUILD\nAdd a one-tap morning brief prototype. Cost: none. Effort: half a day. First action: sketch two native X3 screens.\n\nAll projects, measurements and results are fictional."
+        "PROJECT WATCHLIST DEMO\n\nWEEKLY BUILD RADAR\n\nCHANGED\nNorthstar Notes — Offline search now passes an invented 2,400-note library.\nHarbor Relay — Retry queue repaired; hotspot testing remains unverified.\nGlasswing Planner — Three screens added; accessibility review is still open.\n\nRISK\nNo battery or wake-cycle measurements exist for physical hardware.\n\nONE THING TO BUILD\nOne six-field morning status page across every active project. Cost: $0. Effort: four hours. First action: freeze the JSON contract.\n\nAll names and results are fictional."
       ]
     },
     {
       moduleId: "business-opportunities-demo",
       kind: "text",
-      title: "Opportunity Brief: Maple Arc",
-      summary: "A source-shaped but wholly invented opportunity is scored for fit, cost, effort and the first useful check.",
-      points: ["Concrete lead separated from speculation", "No application is sent from the X3"],
+      title: "Opportunity Brief: Today's Shortlist",
+      summary: "Three invented leads are ranked by fit, scope and evidence, with one safe next action and nothing sent automatically.",
+      points: ["Strong and medium-fit leads are separated", "Budget, constraint and first check are explicit"],
       actions: ["keep", "archive", "open-phone"],
       pages: [
-        "BUSINESS OPPORTUNITY DEMO\n\nMAPLE ARC STUDIO\n\nFIT\nStrong match for a compact offline E-Ink prototype.\n\nCOST\nLow; use the existing simulator and synthetic fixtures.\n\nEFFORT\nOne day for a bounded proof.\n\nFIRST ACTION\nOpen the fictional brief on the phone and verify the deliverables before responding.\n\nThe company, brief and figures are invented."
+        "BUSINESS OPPORTUNITY DEMO\n\nTODAY'S SHORTLIST\n\n1 / MAPLE ARC STUDIO\nOffline E-Ink prototype · strong fit · two-day proof · invented budget A$1,400.\n\n2 / TIDEGLASS MUSEUM\nAccessible kiosk audit · medium fit · verify the onsite requirement.\n\n3 / LANTERN HEALTH\nAndroid companion concept · medium fit · decline if medical claims enter scope.\n\nBEST NEXT ACTION\nOpen Maple Arc on the phone, confirm rights and deadline, then draft — but do not send — a two-screen response.\n\nEvery lead, company and figure is fictional."
       ]
     },
     {
       moduleId: "hardware-research-demo",
       kind: "text",
-      title: "Hardware Brief: Four-Gray UI",
-      summary: "A fictional compatibility note checks memory, display format, recovery and the limits that still require hardware.",
-      points: ["Resource budgets before feature claims", "Physical E-Ink remains a separate gate"],
+      title: "Hardware Brief: PaperCore C3",
+      summary: "A fictional upgrade claim is checked against display fit, memory headroom and recovery before earning a wait-or-build verdict.",
+      points: ["Performance claims meet resource budgets", "Recovery and physical proof remain hard gates"],
       actions: ["keep", "archive", "open-phone"],
       pages: [
-        "HARDWARE RESEARCH DEMO\n\nFOUR-GRAY UI PATH\n\nCOMPATIBILITY\nThe modeled screen targets 528 x 792 and four native gray levels.\n\nRISKS\nBrowser rendering cannot prove panel waveform, button electronics, radio behavior or fragmented heap.\n\nNEXT TEST\nRun the bounded simulator contract, then reserve physical validation for the exact firmware hash.\n\nThis is synthetic documentation, not a hardware test result."
+        "HARDWARE RESEARCH DEMO\n\nPAPERCORE C3 REV B\n\nCLAIM\n22% faster full refresh in invented vendor benchmarks.\n\nFIT\nThe 528 x 792 four-gray buffer matches, but the display API differs.\n\nBUDGET\nNeeds 38 KiB extra linked DRAM; modeled headroom is only 24 KiB.\n\nRECOVERY\nNo verified rollback image or power-loss procedure.\n\nVERDICT\nWAIT. Revisit after memory fits the budget and recovery documents exist.\n\nEvery name, specification and result is fictional."
       ]
     },
     {
@@ -337,6 +372,17 @@ All organisations, measurements and people in this demonstration are invented; t
       ]
     }
   ];
+  const practicalInboxOrder = [
+    "project-watchlist-demo",
+    "business-opportunities-demo",
+    "hardware-research-demo",
+    "reader-genome-demo",
+    "weekend-city-guide-demo",
+    "spark-serial-demo",
+    "daily-puzzle-demo"
+  ];
+  inboxTemplates.sort((left, right) =>
+    practicalInboxOrder.indexOf(left.moduleId) - practicalInboxOrder.indexOf(right.moduleId));
   return {
     schema: "x3-preview-lab-demo/1",
     clock: "2026-01-15T08:00:00Z",
@@ -636,7 +682,8 @@ function useNetworkFixtures() {
     title: publicView.cards[index].title,
     summary: publicView.cards[index].summary,
     metrics: publicView.cards[index].metrics,
-    sections: publicView.cards[index].sections
+    sections: publicView.cards[index].sections,
+    pages: publicView.cards[index].pages
   }));
   const safeInbox = inbox.map((item, index) => ({
     ...item,
