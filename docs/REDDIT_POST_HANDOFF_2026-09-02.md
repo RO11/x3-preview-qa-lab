@@ -24,6 +24,11 @@ explanation is preserved in the post body instead.
   V1/V2 content map after “Why two feeds?”; opened fictional market report after the
   stock-market explanation
 - Live readback: three post images; no duplicate post; useful-content appendix present
+- Linked repositories: both `RO11/x3-preview-qa-lab` and
+  `RO11/xtinct-x3-reference-stack` changed from private to public after the first
+  anonymous check exposed the 404. At 2026-09-02 20:16 Australia/Brisbane, an
+  unauthenticated GitHub API read reported `visibility=public` for both; the preview
+  README and lead image also returned HTTP 200 without credentials.
 
 Do not submit this body again. Any future Reddit publication is a separate operation
 that requires a duplicate check and fresh user authorization.
