@@ -6,6 +6,8 @@ X3 Preview & QA Lab is an unofficial, local development tool for people building
 
 For a public-safe overview of the experimental CrossPoint content modifications and the producer formats used by ChatGPT, Google Spark, and Grok, read [How we extended CrossPoint with AI-fed Cards and Inbox modules](docs/AI_FED_CROSSPOINT_PIPELINE.md).
 
+The prepared Reddit launch post and its CAPTCHA-blocked resume procedure are preserved in [the dated Reddit post handoff](docs/REDDIT_POST_HANDOFF_2026-09-02.md).
+
 ## Modeled native X3 walkthrough
 
 <a href="docs/images/engagement/xtinct-x3-native-showcase-2x.png"><img src="docs/images/engagement/xtinct-x3-native-showcase-2x.png" width="1200" alt="Six high-resolution modeled X3 screens: Home, a fictional stock-market Daily Card, Inbox V2, Like and Dislike actions, an opened fictional article, and a daily puzzle"></a>
