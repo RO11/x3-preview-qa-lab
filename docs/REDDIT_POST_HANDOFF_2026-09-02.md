@@ -1,12 +1,28 @@
 # Reddit post handoff — 2026-09-02
 
-Status: **BLOCKED_HUMAN_CAPTCHA**
+Status: **POSTED_AND_READBACK_VERIFIED**
 
-Submission state: **Nothing was submitted.**
+Submission state: **Published exactly once to `r/eink` and verified at the direct URL.**
 
-Resume only after the user completes Reddit's CAPTCHA in the existing signed-in
-session. Recheck the title, body, and images below, submit once, then read back and
-record the live post URL. Do not retry blindly or claim publication from a filled form.
+The user explicitly instructed publication after the inline-image layout was corrected.
+Reddit accepted the post without presenting a CAPTCHA. Direct readback verified the
+title, author, AI disclosure, both GitHub links, three captions, and the intended inline
+image order.
+
+## Published outcome
+
+- State: `POSTED_AND_READBACK_VERIFIED`
+- Subreddit: `r/eink`
+- Author: `u/Roin1`
+- Verified: 2026-09-02 14:46 Australia/Brisbane
+- Permalink:
+  `https://www.reddit.com/r/eink/comments/1w50e4s/i_built_an_xteink_x3_onceaday_briefing_system/`
+- Post count: one
+- Inline order: overview after the introduction; V1/V2 content map after “Why two
+  feeds?”; fictional market screen after the stock-market explanation
+
+Do not submit this body again. Any future Reddit publication is a separate operation
+that requires a duplicate check and fresh user authorization.
 
 ## Approved title
 

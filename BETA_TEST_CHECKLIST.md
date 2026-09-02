@@ -1,6 +1,7 @@
 # Public alpha beta checklist
 
-Target: `0.1.0-alpha.6`
+Target: `0.1.0-alpha.6` source candidate. The latest published maintenance prerelease
+remains `0.1.0-alpha.5` until a separately verified alpha.6 package is released.
 
 ## Automated candidate gate
 

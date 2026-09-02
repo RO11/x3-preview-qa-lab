@@ -144,6 +144,11 @@ Report security issues through the private process in [SECURITY.md](SECURITY.md)
 
 The automated release checks can establish package integrity and modeled behavior. They do not establish unguided human usability. A public release still requires three outside testers to complete the AI-guided clean-machine tasks in the beta checklist, and human-only operation remains unvalidated until it is tested separately. Until that evidence exists, this is a candidate package—not a validated general release.
 
+## Community references
+
+- [CrossPoint Discussion #3208](https://github.com/crosspoint-reader/crosspoint-reader/discussions/3208) records the earlier unofficial alpha proposal.
+- [The verified r/eink post](https://www.reddit.com/r/eink/comments/1w50e4s/i_built_an_xteink_x3_onceaday_briefing_system/) presents the Cards V1 / Inbox V2 design with three correctly placed modeled screenshots and an AI-assistance disclosure.
+
 ## License
 
 MIT. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). CrossPoint and Xteink names belong to their respective owners; this project is not endorsed by them.
