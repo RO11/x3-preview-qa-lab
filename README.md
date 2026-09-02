@@ -6,6 +6,10 @@ X3 Preview & QA Lab is an unofficial, local development tool for people building
 
 For a public-safe overview of the experimental CrossPoint content modifications and the producer formats used by ChatGPT, Google Spark, and Grok, read [How we extended CrossPoint with AI-fed Cards and Inbox modules](docs/AI_FED_CROSSPOINT_PIPELINE.md).
 
+For the sanitized, copy-ready prompts and the exact distinction between a
+scheduled ChatGPT/Codex task, a Spark draft relay, and a Grok write-only MCP
+adapter, read [Scheduled AI content producers](docs/SCHEDULED_AI_CONTENT_PRODUCERS.md).
+
 The prepared Reddit launch post and its CAPTCHA-blocked resume procedure are preserved in [the dated Reddit post handoff](docs/REDDIT_POST_HANDOFF_2026-09-02.md).
 
 ## Modeled native X3 walkthrough

@@ -82,6 +82,11 @@ The normal Inbox entry flow opens this Cards-style preview. It shows one deliver
 
 The three producers use different transports, but they converge on the same bounded content contract.
 
+These producers are **recurring scheduled tasks**, not models running on the
+X3. The complete public-safe prompt set, scheduling rules, and provider-specific
+delivery adapters are in [Scheduled AI content producers](SCHEDULED_AI_CONTENT_PRODUCERS.md).
+That guide deliberately omits the operator's private Grok content prompt.
+
 ### ChatGPT
 
 A scheduled ChatGPT task creates a complete JSON envelope and sends it as the sole plain-text body of an allowlisted automation email. The subject identifies the job. There is no greeting, Markdown fence, attachment, excerpt, or instruction outside the JSON object.
